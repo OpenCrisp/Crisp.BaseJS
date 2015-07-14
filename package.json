@@ -1,0 +1,41 @@
+{
+	"name": "crisp-base",
+	"title": "OpenCrisp BaseJS",
+	"description": "Base JavaScript functions for OpenCrisp to run in NodeJS and Browser Clients",
+	"version": "0.1.0",
+	"homepage": "https://github.com/OpenCrisp/Crisp.BaseJS",
+	"author": {
+		"name": "Fabian Schmid",
+		"email": "fabian.schmid@wca.at"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/OpenCrisp/Crisp.BaseJS.git"
+	},
+	"bugs": "https://github.com/OpenCrisp/Crisp.BaseJS/issues",
+	"license": "MIT",
+	"licenses": [{
+		"type": "MIT",
+		"url": "https://github.com/OpenCrisp/Crisp.BaseJS/blob/master/LICENSE"
+	}],
+	"engines": {
+		"node": ">= 0.10.15"
+	},
+	"scripts": {
+		"test": "grunt test"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"grunt-contrib-jshint": "~0.10.0",
+		"grunt-contrib-qunit": "~0.5.2",
+		"grunt-contrib-concat": "~0.5.0",
+		"grunt-contrib-uglify": "~0.5.1",
+		"grunt-contrib-watch": "~0.6.1",
+		"grunt-contrib-clean": "~0.5.0",
+		"grunt-contrib-nodeunit": "~0.4.1",
+		"grunt-jsdoc": "~0.6.7",
+		"grunt-jsdoc-to-markdown": "~1.1.1",
+		"grunt": "~0.4.5"
+	},
+	"keywords": ["OpenCrisp", "BaseJS", "javascript", "browser", "nodejs"]
+}
