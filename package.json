@@ -6,7 +6,8 @@
 	"homepage": "https://github.com/OpenCrisp/Crisp.BaseJS",
 	"author": {
 		"name": "Fabian Schmid",
-		"email": "fabian.schmid@wca.at"
+		"email": "fabian.schmid@wca.at",
+		"url": "http://fabian.wca.at"
 	},
 	"repository": {
 		"type": "git",
