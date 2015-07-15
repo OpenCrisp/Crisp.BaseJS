@@ -59,6 +59,8 @@
 	 * @class
 	 * @private
 	 * @memberOf util
+	 *
+	 * @see  {@link https://github.com/OpenCrisp/Crisp.BaseJS/blob/master/test/crisp-base_test.js|example codes on GitHub}
 	 * 
 	 * @example
 	 * // DOM
