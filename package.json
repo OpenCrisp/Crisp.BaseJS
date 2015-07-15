@@ -2,8 +2,8 @@
 	"name": "crisp-base",
 	"title": "OpenCrisp BaseJS",
 	"description": "Base JavaScript functions for OpenCrisp to run in NodeJS and Browser Clients",
-	"version": "0.1.0",
-	"homepage": "https://github.com/OpenCrisp/Crisp.BaseJS",
+	"version": "0.1.1",
+	"homepage": "http://opencrisp.wca.at",
 	"author": {
 		"name": "Fabian Schmid",
 		"email": "fabian.schmid@wca.at",
@@ -25,6 +25,10 @@
 	"scripts": {
 		"test": "grunt test"
 	},
+	"directories": {
+		"doc": "http://opencrisp.wca.at/docs",
+		"example": "./test"
+	},
 	"dependencies": {},
 	"devDependencies": {
 		"grunt-contrib-jshint": "~0.10.0",
@@ -38,5 +42,5 @@
 		"grunt-jsdoc-to-markdown": "~1.1.1",
 		"grunt": "~0.4.5"
 	},
-	"keywords": ["OpenCrisp", "BaseJS", "javascript", "browser", "nodejs"]
+	"keywords": ["OpenCrisp", "async", "namespace"]
 }
