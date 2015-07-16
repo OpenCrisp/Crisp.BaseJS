@@ -82,5 +82,3 @@ console.log('end');
  * [Repository on GitHub.com](https://github.com/OpenCrisp/Crisp.BaseJS)
  * [npm package on npm.com](https://www.npmjs.com/package/crisp-base)
  * [Build History on Travis-ci.org](https://travis-ci.org/OpenCrisp/Crisp.BaseJS)
-
-<img src="http://traumhaftshoppen.at/piwik/piwik.php?idsite=3&amp;rec=1&amp;action_name=Crisp.BaseJS" style="border:0" alt="" />

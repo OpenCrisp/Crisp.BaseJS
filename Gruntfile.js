@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				src: [
-					['src/<%= pkg.name %>.js','src/control.js','src/global-*.js']
+					['src/BaseJS.js','src/BaseJS-control.js','src/global-*.js']
 				],
 				dest: 'dist/<%= pkg.name %>.js'
 			},
@@ -78,26 +78,7 @@ module.exports = function(grunt) {
 		},
 		nodeunit: {
 			all: ['test_nodeunit/**/*.js']
-		},
-		jsdoc : {
-			dist : {
-				src: ['src/**/*.js', 'README.md'],
-				// src: ['src/<%= pkg.name %>.js', 'test/**/*_test.js'],
-				options: {
-					destination: 'doc',
-					// template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
-					// configure : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
-				}
-			}
-		},
-		jsdoc2md: {
-            oneOutputFile: {
-                src: ["src/**/*.js", 'test/**/*_test.js', 'README.md'],
-				// src: ['src/<%= pkg.name %>.js', 'test/**/*.js', 'README.md'],
-				// src: ['INSTALL.md', 'src/<%= pkg.name %>.js', 'test/**/*_test.js', 'README.md'],
-                dest: "DOC.md"
-            }
-        }
+		}
 	});
 
 	// These plugins provide necessary tasks.
@@ -108,8 +89,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
-	grunt.loadNpmTasks('grunt-jsdoc');
-	grunt.loadNpmTasks("grunt-jsdoc-to-markdown");
 
 	// Default task.
 	grunt.registerTask('default', ['jshint', 'qunit', 'nodeunit', 'clean', 'concat', 'uglify']);

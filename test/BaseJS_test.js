@@ -1,30 +1,18 @@
 
-exports['isType'] = function(assert) {
+// ## Base
+// [doc of Base](http://opencrisp.wca.at/docs/util.Base.html)
+
+
+
+
+
+
+// ### Crisp
+// [doc of Global Crisp](http://opencrisp.wca.at/docs/util.Base.html#crisp)
+exports['Crisp'] = function(assert) {
 	var done = assert.done || assert.async();
 	
-	assert.ok( Crisp.isType( '', 'String' ) );
-	assert.ok( Crisp.isType( 0, 'Number' ) );
-	assert.ok( Crisp.isType( {}, 'Object' ) );
-	assert.ok( Crisp.isType( [], 'Array' ) );
-
-	done();
-};
-
-exports['isType var'] = function(assert) {
-	var done = assert.done || assert.async();
-	
-	var a;
-	assert.ok( Crisp.isType( a, 'Undefined' ) );
-
-	done();
-};
-
-exports['isType Object'] = function(assert) {
-	var done = assert.done || assert.async();
-	
-	var b = {};
-	assert.ok( Crisp.isType( b, 'Object' ) );
-	assert.ok( Crisp.isType( b.a, 'Undefined' ) );
+	assert.ok( Crisp );
 
 	done();
 };
@@ -33,8 +21,53 @@ exports['isType Object'] = function(assert) {
 
 
 
+// ### ns
+// [doc of Base.ns](http://opencrisp.wca.at/docs/util.Base.html#ns)
+exports['ns of undefined'] = function(assert) {
+	var done = assert.done || assert.async();
+	
+	assert.deepEqual( Crisp.ns('a'), {} );
+
+	done();
+};
 
 
+exports['ns throw redefined'] = function(assert) {
+	var done = assert.done || assert.async();
+	
+	assert.throws(function(){
+		Crisp.ns('a', 'A');
+	});
+
+	done();
+};
+
+
+exports['ns set root string'] = function(assert) {
+	var done = assert.done || assert.async();
+	
+	assert.equal( Crisp.ns('b', 'B'), 'B' );
+	assert.equal( Crisp.ns('b'), 'B' );
+
+	done();
+};
+
+
+exports['ns set deep string'] = function(assert) {
+	var done = assert.done || assert.async();
+	
+	assert.equal( Crisp.ns('c.d', 'D'), 'D' );
+	assert.equal( Crisp.ns('c.d'), 'D' );
+
+	done();
+};
+
+
+
+
+
+// ### utilTick
+// [doc of Base.utilTick](http://opencrisp.wca.at/docs/util.Base.html#utilTick)
 exports['utilTick sync'] = function(assert) {
 	var done = assert.done || assert.async();
 	var count = 0;
@@ -75,45 +108,69 @@ exports['utilTick async'] = function(assert) {
 
 
 
-
-
-
-exports['ns of undefined'] = function(assert) {
+// ### toType
+// [doc of Base.toType](http://opencrisp.wca.at/docs/util.Base.html#toType)
+exports['toType'] = function(assert) {
 	var done = assert.done || assert.async();
 	
-	assert.deepEqual( Crisp.ns('a'), {} );
+	assert.strictEqual( Crisp.toType( '' ), '[object String]' );
+	assert.strictEqual( Crisp.toType( 0 ), '[object Number]' );
+	assert.strictEqual( Crisp.toType( {} ), '[object Object]' );
+	assert.strictEqual( Crisp.toType( [] ), '[object Array]' );
+
+	done();
+};
+
+exports['toType var'] = function(assert) {
+	var done = assert.done || assert.async();
+	
+	var a;
+	assert.ok( ['[object Undefined]','[object DOMWindow]'].indexOf( Crisp.toType( a ) ) !== -1 );
+
+	done();
+};
+
+exports['toType Object'] = function(assert) {
+	var done = assert.done || assert.async();
+	
+	var b = {};
+	assert.strictEqual( Crisp.toType( b ), '[object Object]' );
+	assert.ok( ['[object Undefined]','[object DOMWindow]'].indexOf( Crisp.toType( b.a ) ) !== -1 );
 
 	done();
 };
 
 
-exports['ns throw redefined'] = function(assert) {
+
+
+// ### isType
+// [doc of Base.isType](http://opencrisp.wca.at/docs/util.Base.html#isType)
+exports['isType'] = function(assert) {
 	var done = assert.done || assert.async();
 	
-	assert.throws(function(){
-		Crisp.ns('a', 'A');
-	});
+	assert.ok( Crisp.isType( '', 'String' ) );
+	assert.ok( Crisp.isType( 0, 'Number' ) );
+	assert.ok( Crisp.isType( {}, 'Object' ) );
+	assert.ok( Crisp.isType( [], 'Array' ) );
 
 	done();
 };
 
-
-exports['ns set root string'] = function(assert) {
+exports['isType var'] = function(assert) {
 	var done = assert.done || assert.async();
 	
-	assert.equal( Crisp.ns('b', 'B'), 'B' );
-	assert.equal( Crisp.ns('b'), 'B' );
+	var a;
+	assert.ok( Crisp.isType( a, 'Undefined' ) );
 
 	done();
 };
 
-
-exports['ns set deep string'] = function(assert) {
+exports['isType Object'] = function(assert) {
 	var done = assert.done || assert.async();
 	
-	assert.equal( Crisp.ns('c.d', 'D'), 'D' );
-	assert.equal( Crisp.ns('c.d'), 'D' );
+	var b = {};
+	assert.ok( Crisp.isType( b, 'Object' ) );
+	assert.ok( Crisp.isType( b.a, 'Undefined' ) );
 
 	done();
 };
-

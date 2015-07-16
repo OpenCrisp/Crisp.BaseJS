@@ -2,11 +2,13 @@
 (function($$) {
 	/**
 	 * @namespace util.control
+	 * @see  exampleUtil.exampleControl
 	 */
 	
 	/**
 	 * only a Break controller without aktivities
 	 * @function util.control.Break
+	 * @tutorial  {@link http://opencrisp.wca.at/tutorials/BaseJS-Objects_test.html#tomath}
 	 *
 	 * @example
 	 * var Break = Crisp.ns('util.control.Break');

@@ -1,4 +1,8 @@
 
+// ## xTo
+// [use Base.to](http://opencrisp.wca.at/docs/util.Base.html#to)
+
+// [use Boolean.xTo](http://opencrisp.wca.at/docs/external-Boolean.html#xTo)
 exports['xTo Boolean'] = function(assert) {
 	var done = assert.done || assert.async();
 
@@ -8,6 +12,7 @@ exports['xTo Boolean'] = function(assert) {
 	done();
 };
 
+// [use Date.xTo](http://opencrisp.wca.at/docs/external-Date.html#xTo)
 exports['xTo Date'] = function(assert) {
 	var done = assert.done || assert.async();
 
@@ -16,6 +21,7 @@ exports['xTo Date'] = function(assert) {
 	done();
 };
 
+// [use Number.xTo](http://opencrisp.wca.at/docs/external-Number.html#xTo)
 exports['xTo Number'] = function(assert) {
 	var done = assert.done || assert.async();
 
@@ -24,6 +30,7 @@ exports['xTo Number'] = function(assert) {
 	done();
 };
 
+// [use String.xTo](http://opencrisp.wca.at/docs/external-String.html#xTo)
 exports['xTo String'] = function(assert) {
 	var done = assert.done || assert.async();
 
@@ -33,6 +40,11 @@ exports['xTo String'] = function(assert) {
 	done();
 };
 
+
+// ## toMath
+// [use Base.toMath](http://opencrisp.wca.at/docs/util.Base.html#toMath)
+
+// [use Number.toMath](http://opencrisp.wca.at/docs/external-Number.html#toMath)
 exports['toMath Number'] = function(assert) {
 	var done = assert.done || assert.async();
 
@@ -43,6 +55,7 @@ exports['toMath Number'] = function(assert) {
 	done();
 };
 
+// [use String.toMath](http://opencrisp.wca.at/docs/external-String.html#toMath)
 exports['toMath String'] = function(assert) {
 	var done = assert.done || assert.async();
 
@@ -53,6 +66,11 @@ exports['toMath String'] = function(assert) {
 	done();
 };
 
+
+
+
+// ## toURLParam
+// [use Objects.toURLParam](http://opencrisp.wca.at/docs/external-Object.html#toURLParam)
 exports['toURLParam Object'] = function(assert) {
 	var done = assert.done || assert.async();
 
@@ -63,6 +81,10 @@ exports['toURLParam Object'] = function(assert) {
 };
 
 
+
+
+// ## xAdd
+// [use Array.xAdd](http://opencrisp.wca.at/docs/external-Array.html#xAdd)
 exports['xAdd Array'] = function(assert) {
 	var done = assert.done || assert.async();
 	assert.expect(11);
@@ -88,6 +110,8 @@ exports['xAdd Array'] = function(assert) {
 };
 
 
+// ## xEach
+// [use Array.xEach](http://opencrisp.wca.at/docs/external-Array.html#xEach)
 exports['xEach Array'] = function(assert) {
 	var done = assert.done || assert.async();
 	var count = 0;
@@ -114,7 +138,7 @@ exports['xEach Array'] = function(assert) {
 	done();
 };
 
-
+// async
 exports['xEach Array async'] = function(assert) {
 	var done = assert.done || assert.async();
 	var count = 0;
@@ -147,6 +171,8 @@ exports['xEach Array async'] = function(assert) {
 
 
 
+// ## escape
+// [use RegExp.escape](http://opencrisp.wca.at/docs/external-RegExp.html#escape)
 exports['escape RegExp'] = function(assert) {
 	var done = assert.done || assert.async();
 

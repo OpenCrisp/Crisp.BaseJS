@@ -1,5 +1,5 @@
-/*! OpenCrisp BaseJS - v0.1.0 - 2015-07-14
-* https://github.com/OpenCrisp/Crisp.BaseJS
+/*! OpenCrisp BaseJS - v0.1.2 - 2015-07-16
+* http://opencrisp.wca.at
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 (function(g) {
 
@@ -7,6 +7,9 @@
 	/**
 	 * Basic Crisp functions
 	 * @namespace util
+	 * 
+	 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html|use BaseJS}
+	 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS-Objects_test.html|use BaseJS Objects}
 	 */
 	
 	
@@ -55,7 +58,9 @@
 	 * @class
 	 * @private
 	 * @memberOf util
-	 * 
+	 *
+	 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#crisp|use Global Crisp of new Base()}
+	 *
 	 * @example
 	 * // DOM
 	 * window.Crisp = new Base();
@@ -74,6 +79,8 @@
 		 * @param {external:String} name Dot seperatet Namespace-Path
 		 * @param {AnyItem} [obj] Any type of Objects
 		 * @return {AnyItem} node of Namespace
+		 *
+		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#ns|use ns}
 		 *
 		 * @example
 		 * // GET
@@ -117,6 +124,8 @@
 		 * @param {external:Boolean} [opt.async=false] Asynchronus apply
 		 * @param {AnyItem} [opt.args] Arguments for apply
 		 * @return {self}
+		 *
+		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#utiltick|use utilTick}
 		 *
 		 * @example <caption>synchronous execution of an anonymous function</caption>
 		 * Crisp.utilTick({ a: 'A' }, function() {
@@ -162,6 +171,8 @@
 		 *
 		 * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString
 		 * 
+		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#totype|use toType}
+		 *
 		 * @example
 		 * Crisp.toType("") // "[object String]"
 		 * Crisp.toType(0) // "[object Number]"
@@ -174,7 +185,10 @@
 		 * check type of object
 		 * @param {AnyItem} obj
 		 * @param {external:String} type
-		 * @returns {external:Boolean} 
+		 * @returns {external:Boolean}
+		 *
+		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#istype|use isType}
+		 * 
 		 */
 		isType: function( obj, type ) {
 			if ( type === 'Undefined' ) {
@@ -188,6 +202,11 @@
 		/**
 		 * @param  {external:String} name name of Math Function
 		 * @return {Number}
+		 *
+		 * @see external:String#toMath
+		 * 
+		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#tomath|use toMath}
+		 *
 		 */
 		toMath: function( name ) {
 			return Math[ name ].call( Math, this );
@@ -197,6 +216,9 @@
 		 * create specified data format
 		 * @param {external:String} type="json"
 		 * @returns {external:String} converted JavaScript Object
+		 * 
+		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#to|use to}
+		 *
 		 */
 		to: function() {
 			// TODO add more data formates (XML,CSV,HTML) for create Crisp.to('xml');
@@ -207,6 +229,9 @@
 		 * parse data format
 		 * @param {external:String} type="json"
 		 * @return {AnyItem} JavaScript Objects
+		 * 
+		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#parse|use parse}
+		 *
 		 */
 		parse: function() {
 			// TODO add more data formates (XML,CSV,HTML) for parse Crisp.parse('xml');
@@ -217,6 +242,9 @@
 		 * create JSON data format
 		 * @param {external:Boolean} prity=false
 		 * @returns {external:String} converted JavaScript Object
+		 * 
+		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#tojson|use toJson}
+		 *
 		 */
 		toJson: function( prity ) {
 			return prity ? JSON.stringify( this, null, "\t" ) : JSON.stringify( this );
@@ -225,6 +253,9 @@
 		/**
 		 * parse thisArg JSON
 		 * @return {AnyItem} JavaScript Objects
+		 * 
+		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#parsejson|use parseJson}
+		 *
 		 */
 		parseJson: function() {
 			return JSON.parse( this.toString() );
@@ -238,6 +269,8 @@
 	 * @global
 	 * @type {util.Base}
 	 * 
+	 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#crisp|use Global Crisp}
+	 *
 	 * @example
 	 * // DOM
 	 * var $$ = window.Crisp;
@@ -261,11 +294,13 @@
 (function($$) {
 	/**
 	 * @namespace util.control
+	 * @see  exampleUtil.exampleControl
 	 */
 	
 	/**
 	 * only a Break controller without aktivities
 	 * @function util.control.Break
+	 * @tutorial  {@link http://opencrisp.wca.at/tutorials/BaseJS-Objects_test.html#tomath}
 	 *
 	 * @example
 	 * var Break = Crisp.ns('util.control.Break');
