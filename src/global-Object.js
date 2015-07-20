@@ -86,7 +86,7 @@
 
 	Object.defineProperty( Object.prototype, 'xEach', {
 		value: function( opt ) {
-			return $$.utilTick( this, xEachObject, opt );
+			return $$.utilTick( this, xEachObject, opt, opt.async );
 		}
 	});
 

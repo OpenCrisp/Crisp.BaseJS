@@ -68,7 +68,27 @@ exports['ns set deep string'] = function(assert) {
 
 // ### utilTick
 // [doc of Base.utilTick](http://opencrisp.wca.at/docs/util.Base.html#utilTick)
-exports['utilTick sync'] = function(assert) {
+exports['utilTick'] = function(assert) {
+	var done = assert.done || assert.async();
+	var count = 0;
+	assert.expect(3);
+
+	var thisArg = {};
+
+	function test( b ) {
+		count += 1;
+		assert.equal( this, thisArg );
+		assert.equal( b, 'B' );
+	}
+
+	Crisp.utilTick( thisArg, test, { args: 'B' } );
+	assert.equal( count, 1 );
+
+	done();
+};
+
+
+exports['utilTick private thisArg'] = function(assert) {
 	var done = assert.done || assert.async();
 	var count = 0;
 	assert.expect(3);
@@ -99,7 +119,7 @@ exports['utilTick async'] = function(assert) {
 		done();
 	}
 
-	Crisp.utilTick( { a: 'A' }, test, { async: true, args: { c: 'C' } } );
+	Crisp.utilTick( { a: 'A' }, test, { args: { c: 'C' } }, true );
 	count += 1;
 };
 

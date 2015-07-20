@@ -41,19 +41,20 @@
 	 * [utilTickCall description]
 	 * @private
 	 * @param  {util.utilTickCallback} callback [description]
-	 * @param  {AnyItem}   opt      [description]
+	 * @param  {AnyItem}   opt  [description]
+	 * @param  {AnyItem}   [opt.args=opt] Arguments for {util.utilTickCallback}
 	 * @memberOf util
 	 * 
 	 * @see  util.Base#utilTick
 	 */
-	function utilTickCall( callback, opt ) {
+	function utilTickCall( callback, self, opt ) {
 		var args = opt.args || opt;
 		args = [].concat( args );
 
-		callback.apply( opt.self, args );
+		callback.apply( self, args );
 
 		if ( typeof opt.complete === 'function' ) {
-			opt.complete.apply( opt.self, args );
+			opt.complete.apply( self, args );
 		}
 	}
 
@@ -125,8 +126,8 @@
 		 * @param {util.utilTickCallback} callback Function for apply
 		 * @param {external:Object} [opt] Options for apply
 		 * @param {AnyItem} [opt.self=self] thisArg of apply 
-		 * @param {external:Boolean} [opt.async=false] Asynchronus apply
 		 * @param {AnyItem} [opt.args] Arguments for apply
+		 * @param {external:Boolean} [async=false] Asynchronus apply
 		 * @return {self}
 		 *
 		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#utiltick|use utilTick}
@@ -145,23 +146,21 @@
 		 *   console.log( b.c );
 		 * }
 		 * 
-		 * Crisp.utilTick( { a: 'A' }, test, { async: true, args: 'C' } );
+		 * Crisp.utilTick( { a: 'A' }, test, { args: 'C' }, true );
 		 * console.log('end');
 		 * // logs:
 		 * // end
 		 * // { "a": "A" }
 		 */
-		utilTick: function( self, callback, opt ) {
+		utilTick: function( self, callback, opt, async ) {
 			opt = opt || {};
-			opt.self = opt.self || self;
+			self = self || opt.self;
 
-			if ( opt.async ) {
-				// TODO delete "delete opt.async" if changed call opt to apply opt.args
-				// delete opt.async;
-				setTimeout( utilTickCall, 0, callback, opt );
+			if ( async ) {
+				setTimeout( utilTickCall, 0, callback, self, opt );
 			}
 			else {
-				utilTickCall( callback, opt );
+				utilTickCall( callback, self, opt );
 			}
 
 			return self;
@@ -291,5 +290,9 @@
 	 * })(Crisp);
 	 */
 	g.Crisp = new Base();
+
+	/**
+	 * @module BaseJS
+	 */
 
 })(typeof process !== 'undefined' && typeof process.title !== 'undefined' && typeof global !== 'undefined' ? global : window);
