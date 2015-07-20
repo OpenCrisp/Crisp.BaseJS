@@ -59,31 +59,40 @@
 	}
 
 	/**
-	 * Global {@link Crisp} is an instance of [new Base()]{@linkcode util.Base}
-	 * @class
-	 * @private
-	 * @memberOf util
-	 *
-	 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#crisp|use Global Crisp of new Base()}
+	 * Global Crisp Object
+	 * @global
+	 * @type {module:BaseJS}
+	 * 
+	 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#crisp|use Global Crisp}
 	 *
 	 * @example
 	 * // DOM
-	 * window.Crisp = new Base();
+	 * var $$ = window.Crisp;
 	 *
 	 * // NodeJS
-	 * global.Crisp = new Base();
+	 * var $$ = global.Crisp;
+	 * 
 	 * // OR
-	 * module.exports = new Base();
+	 * var $$ = Crisp;
+	 *
+	 * // use Crisp in private Block
+	 * (function($$) {
+	 *   // code
+	 * })(Crisp);
 	 */
-	function Base() {}
+	g.Crisp = {
+			
+		/**
+		 * @module BaseJS
+		 */
 
-	Base.prototype = {
-		
 		/**
 		 * managed Crisp Namespace
 		 * @param {external:String} name Dot seperatet Namespace-Path
 		 * @param {AnyItem} [obj] Any type of Objects
 		 * @return {AnyItem} node of Namespace
+		 *
+		 * @memberOf module:BaseJS
 		 *
 		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#ns|use ns}
 		 *
@@ -130,6 +139,8 @@
 		 * @param {external:Boolean} [async=false] Asynchronus apply
 		 * @return {self}
 		 *
+		 * @memberOf module:BaseJS
+		 *
 		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#utiltick|use utilTick}
 		 *
 		 * @example <caption>synchronous execution of an anonymous function</caption>
@@ -172,6 +183,8 @@
 		 * @param {AnyItem}
 		 * @return {external:String}
 		 *
+		 * @memberOf module:BaseJS
+		 *
 		 * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString
 		 * 
 		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#totype|use toType}
@@ -190,6 +203,8 @@
 		 * @param {external:String} type
 		 * @returns {external:Boolean}
 		 *
+		 * @memberOf module:BaseJS
+		 *
 		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#istype|use isType}
 		 * 
 		 */
@@ -206,6 +221,8 @@
 		 * @param  {external:String} name name of Math Function
 		 * @return {Number}
 		 *
+		 * @memberOf module:BaseJS
+		 *
 		 * @see external:String#toMath
 		 * 
 		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#tomath|use toMath}
@@ -220,6 +237,8 @@
 		 * @param {external:String} type="json"
 		 * @returns {external:String} converted JavaScript Object
 		 * 
+		 * @memberOf module:BaseJS
+		 *
 		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#to|use to}
 		 *
 		 */
@@ -233,6 +252,8 @@
 		 * @param {external:String} type="json"
 		 * @return {AnyItem} JavaScript Objects
 		 * 
+		 * @memberOf module:BaseJS
+		 *
 		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#parse|use parse}
 		 *
 		 */
@@ -246,6 +267,8 @@
 		 * @param {external:Boolean} prity=false
 		 * @returns {external:String} converted JavaScript Object
 		 * 
+		 * @memberOf module:BaseJS
+		 *
 		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#tojson|use toJson}
 		 *
 		 */
@@ -257,6 +280,8 @@
 		 * parse thisArg JSON
 		 * @return {AnyItem} JavaScript Objects
 		 * 
+		 * @memberOf module:BaseJS
+		 *
 		 * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#parsejson|use parseJson}
 		 *
 		 */
@@ -267,7 +292,7 @@
 	};
 
 
-	/**
+	/*
 	 * Global Crisp Object
 	 * @global
 	 * @type {util.Base}
@@ -289,10 +314,6 @@
 	 *   // code
 	 * })(Crisp);
 	 */
-	g.Crisp = new Base();
-
-	/**
-	 * @module BaseJS
-	 */
+	// g.Crisp = new Base();
 
 })(typeof process !== 'undefined' && typeof process.title !== 'undefined' && typeof global !== 'undefined' ? global : window);
