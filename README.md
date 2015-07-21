@@ -69,7 +69,7 @@ function test( b ) {
   console.log( b.c );
 }
 
-Crisp.utilTick( { a: 'A' }, test, { async: true, args: 'C' } );
+Crisp.utilTick( { a: 'A' }, test, { args: 'C' }, true );
 console.log('end');
 // logs:
 // end
@@ -77,7 +77,7 @@ console.log('end');
 ```
 
 ## Links
- * [Online Crisp.BaseJS Documentation](http://opencrisp.wca.at/docs/util.Base.html)
+ * [Online Crisp.BaseJS module Documentation](http://opencrisp.wca.at/docs/module-BaseJS.html)
  * [More Examples on GitHub.com](https://github.com/OpenCrisp/Crisp.BaseJS/tree/master/test)
  * [Repository on GitHub.com](https://github.com/OpenCrisp/Crisp.BaseJS)
  * [npm package on npm.com](https://www.npmjs.com/package/crisp-base)

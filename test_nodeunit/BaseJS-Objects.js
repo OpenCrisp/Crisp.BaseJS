@@ -8,4 +8,5 @@ require("../src/global-Number");
 require("../src/global-Object");
 require("../src/global-RegExp");
 require("../src/global-String");
+
 module.exports = require("../test/BaseJS-Objects_test");
