@@ -6,8 +6,8 @@
 
 (function($$) {
 
-    var Break = $$.ns('util.control.break');
-    // var End = $$.ns('util.control.end');
+    var Break = $$.ns('util.control.Break');
+    // var End = $$.ns('util.control.End');
 
     
     /**

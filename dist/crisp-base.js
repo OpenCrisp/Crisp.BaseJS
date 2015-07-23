@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.2.0 - 2015-07-22
+/*! OpenCrisp BaseJS - v0.2.0 - 2015-07-24
 * http://opencrisp.wca.at
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 /**
@@ -403,8 +403,8 @@
 
 (function($$) {
 
-    var Break = $$.ns('util.control.break');
-    // var End = $$.ns('util.control.end');
+    var Break = $$.ns('util.control.Break');
+    // var End = $$.ns('util.control.End');
 
     
     /**
@@ -554,8 +554,8 @@
 
 (function($$) {
 
-    // var Break = $$.ns('util.control.break');
-    // var End = $$.ns('util.control.end');
+    // var Break = $$.ns('util.control.Break');
+    // var End = $$.ns('util.control.End');
 
     
     /**
@@ -579,8 +579,8 @@
 
 (function($$) {
 
-    // var Break = $$.ns('util.control.break');
-    // var End = $$.ns('util.control.end');
+    // var Break = $$.ns('util.control.Break');
+    // var End = $$.ns('util.control.End');
 
     
     /**
@@ -603,8 +603,8 @@
 
 (function($$) {
 
-    // var Break = $$.ns('util.control.break');
-    // var End = $$.ns('util.control.end');
+    // var Break = $$.ns('util.control.Break');
+    // var End = $$.ns('util.control.End');
 
     
     /**
@@ -805,8 +805,8 @@
 
 (function() {
 
-    // var Break = $$.ns('util.control.break');
-    // var End = $$.ns('util.control.end');
+    // var Break = $$.ns('util.control.Break');
+    // var End = $$.ns('util.control.End');
 
 
     /**
@@ -842,8 +842,8 @@
 
 (function($$) {
 
-    // var Break = $$.ns('util.control.break');
-    // var End = $$.ns('util.control.end');
+    // var Break = $$.ns('util.control.Break');
+    // var End = $$.ns('util.control.End');
 
 
     /**

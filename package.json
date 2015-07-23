@@ -2,7 +2,7 @@
 	"name": "crisp-base",
 	"title": "OpenCrisp BaseJS",
 	"description": "Base JavaScript functions for OpenCrisp to run in NodeJS and Browser Clients",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"homepage": "http://opencrisp.wca.at",
 	"author": {
 		"name": "Fabian Schmid",
