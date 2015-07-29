@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.2.0 - 2015-07-24
+/*! OpenCrisp BaseJS - v0.2.1 - 2015-07-29
 * http://opencrisp.wca.at
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 /**
@@ -467,13 +467,19 @@
      * @function external:Array.prototype.xEach
      * 
      * @param {external:Object}         option
-     * @param {util.utilTickCallback}   option.success     callback function for execute each item with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
-     * @param {AnyItem}                 [option.self]      use Object for .call() the <code>option.success</code> an <code>option.complete</code> function
-     * @param {util.utilTickCallback}   [option.complete]  callback function for exeute on the end of xEach with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
-     * @param {external:Boolean}        [option.async]     enable asynchronus for call of each Array items with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
+     * @param {util.utilTickCallback}   option.success          callback function for execute each item with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
+     * @param {AnyItem}                 [option.self]           use Object for .call() the <code>option.success</code> an <code>option.complete</code> function
+     * @param {util.utilTickCallback}   [option.complete]       callback function for exeute on the end of xEach with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
+     * @param {external:Boolean}        [option.async]          enable asynchronus for call of each Array items with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
+     * @param {external:Number}         [option.start=0]        start index of each 
+     * @param {external:Number}         [option.limit=length]   limit items of each
      * 
      * @this external:Array
      * @return {external:Array}
+     *
+     * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS-xEach_test.html#array|use Array.xEach}
+     * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS-xEach_test.html#array-option-start|use Array.xEach( start )}
+     * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS-xEach_test.html#array-option-limit|use Array.xEach( limit )}
      *
      * @example
      * ['A','B'].xEach({
@@ -514,12 +520,26 @@
      */
     function xEachArray( option ) {
         var i = 0,
-            m = this.length;
+            length = this.length,
+            start = option.start ? Number( option.start ) : 0,
+            limit = option.limit === undefined ? length : Number( option.limit );
+        
+        if ( limit <= 0 ) {
+            limit = length;
+        }
+
+        if ( start < 0 ) {
+            start = length + start;
+        }
+
+        if ( start + limit > length ) {
+            limit -= start + limit - length;
+        }
 
         try {
             
-            for (; i<m; i+=1 ) {
-                option.success.call( option.self, this[i], i );
+            for (; i<limit; i+=1 ) {
+                option.success.call( option.self, this[ i + start ], i + start );
             }
 
         } catch (e) { if ( e instanceof Break ) {} else { throw e; } }
@@ -726,25 +746,39 @@
      * // success: b B
      * // complete
      */
-    function xEachObject( opt ) {
+    function xEachObject( option ) {
         var keys = Object.keys( this ),
             i = 0,
-            m = keys.length,
+            length = keys.length,
+            start = option.start ? Number( option.start ) : 0,
+            limit = option.limit === undefined ? length : Number( option.limit ),
             name;
+        
+        if ( limit <= 0 ) {
+            limit = length;
+        }
+
+        if ( start < 0 ) {
+            start = length + start;
+        }
+
+        if ( start + limit > length ) {
+            limit -= start + limit - length;
+        }
 
         try {
 
-            for (; i<m; i+=1 ) {
-                name = keys[i];
-                opt.success.call( opt.self, this[ name ], name );
+            for (; i<limit; i+=1 ) {
+                name = keys[ i + start ];
+                option.success.call( option.self, this[ name ], name );
             }
 
         } catch (e) { if ( e instanceof Break ) {} else { throw e; } }
     }
 
     Object.defineProperty( Object.prototype, 'xEach', {
-        value: function( opt ) {
-            return $$.utilTick( this, xEachObject, opt, opt.async );
+        value: function( option ) {
+            return $$.utilTick( this, xEachObject, option, option.async );
         }
     });
 

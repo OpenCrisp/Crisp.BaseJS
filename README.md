@@ -1,5 +1,5 @@
 # Crisp.BaseJS
-Base JavaScript functions for OpenCrisp in NodeJS and Browser Clients
+Base JavaScript functions for OpenCrisp in NodeJS/IOjs and Browser Clients
 
 [![Build Status](https://travis-ci.org/OpenCrisp/Crisp.BaseJS.svg)](https://travis-ci.org/OpenCrisp/Crisp.BaseJS)
 [![NPM Downloads](https://img.shields.io/npm/dm/crisp-base.svg)](https://www.npmjs.com/package/crisp-base)
@@ -78,7 +78,7 @@ console.log('end');
 
 ## Links
  * [Online Crisp.BaseJS module Documentation](http://opencrisp.wca.at/docs/module-BaseJS.html)
- * [More Examples on GitHub.com](https://github.com/OpenCrisp/Crisp.BaseJS/tree/master/test)
+ * [More Examples on opencrisp.wca.at](http://opencrisp.wca.at/tutorials/BaseJS_test.html)
  * [Repository on GitHub.com](https://github.com/OpenCrisp/Crisp.BaseJS)
  * [npm package on npm.com](https://www.npmjs.com/package/crisp-base)
  * [Build History on Travis-ci.org](https://travis-ci.org/OpenCrisp/Crisp.BaseJS)
