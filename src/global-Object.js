@@ -100,6 +100,8 @@
             }
 
         } catch (e) { if ( e instanceof Break ) {} else { throw e; } }
+        
+        return this;
     }
 
     Object.defineProperty( Object.prototype, 'xEach', {
