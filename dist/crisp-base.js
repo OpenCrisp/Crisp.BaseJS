@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.2.1 - 2015-07-29
+/*! OpenCrisp BaseJS - v0.2.3 - 2015-07-30
 * http://opencrisp.wca.at
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 /**
@@ -536,6 +536,11 @@
             limit -= start + limit - length;
         }
 
+        if ( start < 0 ) {
+            start = 0;
+            limit = length;
+        }
+
         try {
             
             for (; i<limit; i+=1 ) {
@@ -707,9 +712,15 @@
      * @param {AnyItem}                 [option.self]      use Object for .call() the <code>option.success</code> an <code>option.complete</code> function
      * @param {util.utilTickCallback}   [option.complete]  callback function for exeute on the end of xEach with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
      * @param {external:Boolean}        [option.async]     enable asynchronus for call of each Object key-items with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
+     * @param {external:Number}         [option.start=0]        start index of each
+     * @param {external:Number}         [option.limit=length]   limit items of each
      * 
      * @this external:Object
      * @return {external:Object}
+     *
+     * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS-xEach_test.html#object|use Object.xEach}
+     * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS-xEach_test.html#object-option-start|use Object.xEach( start )}
+     * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS-xEach_test.html#object-option-limit|use Object.xEach( limit )}
      *
      * @example
      * {a:'A',b:'B'}.xEach({
@@ -766,6 +777,11 @@
             limit -= start + limit - length;
         }
 
+        if ( start < 0 ) {
+            start = 0;
+            limit = length;
+        }
+
         try {
 
             for (; i<limit; i+=1 ) {
@@ -774,6 +790,8 @@
             }
 
         } catch (e) { if ( e instanceof Break ) {} else { throw e; } }
+        
+        return this;
     }
 
     Object.defineProperty( Object.prototype, 'xEach', {

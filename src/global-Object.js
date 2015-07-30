@@ -92,6 +92,11 @@
             limit -= start + limit - length;
         }
 
+        if ( start < 0 ) {
+            start = 0;
+            limit = length;
+        }
+
         try {
 
             for (; i<limit; i+=1 ) {

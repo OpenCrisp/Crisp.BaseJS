@@ -166,6 +166,34 @@ exports['xEach Array start=2, limit=10'] = function(assert) {
     done();
 };
 
+exports['xEach Array start=-10, limit=10'] = function(assert) {
+    var done = assert.done || assert.async();
+    var count = 0;
+    assert.expect(5);
+
+    var a = ['A'];
+    a.xEach({
+        start: -10,
+        limit: 10,
+        success: function( item, index ) {
+            assert.equal( count, 0 );
+            count += 1;
+
+            assert.equal( item, 'A' );
+            assert.equal( index, 0 );
+        },
+        complete: function() {
+            assert.equal( count, 1 );
+            count += 1;
+        }
+    });
+    
+    assert.equal( count, 2 );
+    count += 1;
+
+    done();
+};
+
 
 // ## Object
 // [use Object.xEach](http://opencrisp.wca.at/docs/external-Object.html#xEach)
@@ -321,6 +349,34 @@ exports['xEach Object start=2 limit=10'] = function(assert) {
 
             assert.equal( item, 'C' );
             assert.equal( index, 'c' );
+        },
+        complete: function() {
+            assert.equal( count, 1 );
+            count += 1;
+        }
+    });
+    
+    assert.equal( count, 2 );
+    count += 1;
+
+    done();
+};
+
+exports['xEach Object start=-10 limit=10'] = function(assert) {
+    var done = assert.done || assert.async();
+    var count = 0;
+    assert.expect(5);
+
+    var a = { a: 'A' };
+    a.xEach({
+        start: -10,
+        limit: 10,
+        success: function( item, index ) {
+            assert.equal( count, 0 );
+            count += 1;
+
+            assert.equal( item, 'A' );
+            assert.equal( index, 'a' );
         },
         complete: function() {
             assert.equal( count, 1 );
