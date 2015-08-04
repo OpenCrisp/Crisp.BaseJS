@@ -194,6 +194,54 @@ exports['xEach Array start=-10, limit=10'] = function(assert) {
     done();
 };
 
+exports['xEach Array out of range'] = function(assert) {
+    var done = assert.done || assert.async();
+    var count = 0;
+    assert.expect(2);
+
+    var a = ['A'];
+    a.xEach({
+        start: 10,
+        limit: 10,
+        success: function() {
+            throw new Error();
+        },
+        complete: function() {
+            assert.equal( count, 0 );
+            count += 1;
+        }
+    });
+    
+    assert.equal( count, 1 );
+    count += 1;
+
+    done();
+};
+
+exports['xEach async Array out of range'] = function(assert) {
+    var done = assert.done || assert.async();
+    var count = 0;
+    assert.expect(2);
+
+    var a = ['A'];
+    a.xEach({
+        start: 10,
+        limit: 10,
+        async: true,
+        success: function() {
+            throw new Error();
+        },
+        complete: function() {
+            assert.equal( count, 1 );
+            count += 1;
+            done();
+        }
+    });
+    
+    assert.equal( count, 0 );
+    count += 1;
+};
+
 
 // ## Object
 // [use Object.xEach](http://opencrisp.wca.at/docs/external-Object.html#xEach)
@@ -388,4 +436,52 @@ exports['xEach Object start=-10 limit=10'] = function(assert) {
     count += 1;
 
     done();
+};
+
+exports['xEach Object out of range'] = function(assert) {
+    var done = assert.done || assert.async();
+    var count = 0;
+    assert.expect(2);
+
+    var a = { a: 'A' };
+    a.xEach({
+        start: 10,
+        limit: 10,
+        success: function() {
+            throw new Error();
+        },
+        complete: function() {
+            assert.equal( count, 0 );
+            count += 1;
+        }
+    });
+    
+    assert.equal( count, 1 );
+    count += 1;
+
+    done();
+};
+
+exports['xEach async Object out of range'] = function(assert) {
+    var done = assert.done || assert.async();
+    var count = 0;
+    assert.expect(2);
+
+    var a = { a: 'A' };
+    a.xEach({
+        start: 10,
+        limit: 10,
+        async: true,
+        success: function() {
+            throw new Error();
+        },
+        complete: function() {
+            assert.equal( count, 1 );
+            count += 1;
+            done();
+        }
+    });
+    
+    assert.equal( count, 0 );
+    count += 1;
 };
