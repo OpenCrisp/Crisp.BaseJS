@@ -74,6 +74,25 @@ exports['utilTick'] = function(assert) {
     done();
 };
 
+exports['utilTick args=false'] = function(assert) {
+    var done = assert.done || assert.async();
+    var count = 0;
+    assert.expect(3);
+
+    var thisArg = {};
+
+    function test( b ) {
+        count += 1;
+        assert.strictEqual( this, thisArg );
+        assert.strictEqual( b, false );
+    }
+
+    Crisp.utilTick( thisArg, test, { args: false } );
+    assert.equal( count, 1 );
+
+    done();
+};
+
 exports['utilTick private thisArg'] = function(assert) {
     var done = assert.done || assert.async();
     var count = 0;

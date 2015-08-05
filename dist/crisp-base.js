@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.2.4 - 2015-08-04
+/*! OpenCrisp BaseJS - v0.2.6 - 2015-08-06
 * http://opencrisp.wca.at
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 /**
@@ -55,7 +55,12 @@
      * setTimeout( utilTickCall, 0, callback, self, opt );
      */
     function utilTickCall( callback, self, opt ) {
-        var args = opt.args || opt;
+        var args = opt.args;
+
+        if ( args === undefined ) {
+            args = opt;
+        }
+        
         args = [].concat( args );
 
         callback.apply( self, args );

@@ -59,7 +59,12 @@
      * setTimeout( utilTickCall, 0, callback, self, opt );
      */
     function utilTickCall( callback, self, opt ) {
-        var args = opt.args || opt;
+        var args = opt.args;
+
+        if ( args === undefined ) {
+            args = opt;
+        }
+        
         args = [].concat( args );
 
         callback.apply( self, args );
