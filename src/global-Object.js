@@ -134,6 +134,24 @@
 
 
     /**
+     * @function external:Object.prototype.xType
+     * @implements {module:BaseJS.type}
+     * 
+     * @param {external:String} [type] JavaScript type
+     *
+     * @this external:Object
+     * @return {external:String|external:Boolean}
+     *
+     * @example
+     * (false).xType();          // 'Object'
+     * (true).xType('Object');  // 'true'
+     */
+    Object.defineProperty( Object.prototype, 'xType', {
+        value: $$.type
+    });
+
+
+    /**
      * Object to HTTP URL Parameter
      * @return {external:String}
      */

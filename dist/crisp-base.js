@@ -21,6 +21,8 @@
      */
     var toType = Object.prototype.toString;
 
+    var regTypeTrim = /^\[object ([a-z]+)\]$/i;
+
 
     /**
      * @private
@@ -70,6 +72,18 @@
         }
     }
 
+
+    function isType( object, type ) {
+        if ( type === 'field' ) {
+            return isType( object, 'String' ) || isType( object, 'Number' ) || isType( object, 'Boolean' ) || isType( object, 'Date' ) || isType( object, 'RegExp' );
+        }
+        else if ( type === 'Undefined' ) {
+            return ['[object Undefined]', '[object DOMWindow]'].indexOf( toType.call( object ) ) !== -1;
+        }
+        else {
+            return toType.call( object ) === '[object '.concat( type, ']' );
+        }
+    }
 
     /**
      * Global Crisp Object
@@ -239,12 +253,36 @@
          * Crisp.isType({}, "String"); // false
          * Crisp.isType([], "Number"); // false
          */
-        isType: function( object, type ) {
-            if ( type === 'Undefined' ) {
-                return ['[object Undefined]', '[object DOMWindow]'].indexOf( toType.call( object ) ) !== -1;
+        isType: isType,
+
+
+        /**
+         * get or check type of object
+         * @param       {external:String} [type]
+         * 
+         * @this        module:BaseJS
+         * @returns     {external:Boolean|external:String}
+         *
+         * @memberOf    module:BaseJS
+         *
+         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#type|use type}
+         * 
+         * @example
+         * Crisp.type.call("");  // "String"
+         * Crisp.type.call(0);   // "Number"
+         * 
+         * Crisp.type.call("", "String"); // true
+         * Crisp.type.call(0, "Number");  // true
+         * 
+         * Crisp.type.call({}, "String"); // false
+         * Crisp.type.call([], "Number"); // false
+         */
+        type: function( type ) {
+            if ( type ) {
+                return isType( this, type );
             }
             else {
-                return toType.call( object ) === '[object '.concat( type, ']' );
+                return toType.call( this ).replace( regTypeTrim, "$1" );
             }
         },
 
@@ -576,13 +614,13 @@
      * @example
      * ['a'].xTo(); // '["a"]'
      */
-    Object.defineProperty( Array.prototype, 'xTo', {
-        value: $$.to
-    });
+    // Object.defineProperty( Array.prototype, 'xTo', {
+    //     value: $$.to
+    // });
 
 })(Crisp);
 
-(function($$) {
+// (function($$) {
 
     // var Break = $$.ns('util.control.Break');
     // var End = $$.ns('util.control.End');
@@ -601,13 +639,13 @@
      * (false).xTo(); // 'false'
      * (true).xTo(); // 'true'
      */
-    Object.defineProperty( Boolean.prototype, 'xTo', {
-        value: $$.to
-    });
+    // Object.defineProperty( Boolean.prototype, 'xTo', {
+    //     value: $$.to
+    // });
 
-})(Crisp);
+// })(Crisp);
 
-(function($$) {
+// (function($$) {
 
     // var Break = $$.ns('util.control.Break');
     // var End = $$.ns('util.control.End');
@@ -625,11 +663,11 @@
      * @example
      * new Date('2015-07-13').xTo(); // '"2015-07-13T00:00:00.000Z"'
      */
-    Object.defineProperty( Date.prototype, 'xTo', {
-        value: $$.to
-    });
+    // Object.defineProperty( Date.prototype, 'xTo', {
+    //     value: $$.to
+    // });
 
-})(Crisp);
+// })(Crisp);
 
 (function($$) {
 
@@ -688,9 +726,9 @@
      * (0).xTo(); // '0'
      * (1.5).xTo(); // '1.5'
      */
-    Object.defineProperty( Number.prototype, 'xTo', {
-        value: $$.to
-    });
+    // Object.defineProperty( Number.prototype, 'xTo', {
+    //     value: $$.to
+    // });
 
 })(Crisp);
 
@@ -824,6 +862,24 @@
 
 
     /**
+     * @function external:Object.prototype.xType
+     * @implements {module:BaseJS.type}
+     * 
+     * @param {external:String} [type] JavaScript type
+     *
+     * @this external:Object
+     * @return {external:String|external:Boolean}
+     *
+     * @example
+     * (false).xType();          // 'Object'
+     * (true).xType('Object');  // 'true'
+     */
+    Object.defineProperty( Object.prototype, 'xType', {
+        value: $$.type
+    });
+
+
+    /**
      * Object to HTTP URL Parameter
      * @return {external:String}
      */
@@ -932,9 +988,9 @@
      * 'a'.xTo(); // '"a"'
      * 'b"c'.xTo(); // '"b\\"c"'
      */
-    Object.defineProperty( String.prototype, 'xTo', {
-        value: $$.to
-    });
+    // Object.defineProperty( String.prototype, 'xTo', {
+    //     value: $$.to
+    // });
 
 
     /**

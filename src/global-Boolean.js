@@ -4,7 +4,7 @@
  * @see  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean
  */
 
-(function($$) {
+// (function($$) {
 
     // var Break = $$.ns('util.control.Break');
     // var End = $$.ns('util.control.End');
@@ -23,8 +23,8 @@
      * (false).xTo(); // 'false'
      * (true).xTo(); // 'true'
      */
-    Object.defineProperty( Boolean.prototype, 'xTo', {
-        value: $$.to
-    });
+    // Object.defineProperty( Boolean.prototype, 'xTo', {
+    //     value: $$.to
+    // });
 
-})(Crisp);
+// })(Crisp);

@@ -14,7 +14,8 @@ What is CRISP? Configuration Result In Simplified Programming
     * [Browsers](#browsers)
   * [Usage](#usage)
     * [Namespace example](#namespace-example)
-    * [Tick example](#tick-example)
+    * [utilTick example](#utiltick-example)
+    * [type example](#type-example)
   * [Links](#links)
 
 ## Getting Started
@@ -23,6 +24,10 @@ What is CRISP? Configuration Result In Simplified Programming
 Use the Node Package Manager (npm) for install crisp-base
 
     npm install crisp-base
+
+or use all of OpenCrisp Utils
+
+    npm install crisp-util
 
 ### Browsers
 ```html
@@ -51,7 +56,7 @@ Crisp.ns('b', { a: 'A' }); // return reference of b = { a: 'A' }
 ```
 
 
-### Tick example
+### utilTick example
 synchronous execution of an anonymous function
 ```javascript
 Crisp.utilTick({ a: 'A' }, function() {
@@ -75,6 +80,28 @@ console.log('end');
 // end
 // { "a": "A" }
 ```
+
+### type example
+```javascript
+// get the type name
+assert.strictEqual( Crisp.type.call( {} ), 'Object' );
+assert.strictEqual( Crisp.type.call( '' ), 'String' );
+assert.strictEqual( Crisp.type.call( 0 ), 'Number' );
+
+assert.strictEqual( {}.xType(), 'Object' );
+assert.strictEqual( ''.xType(), 'String' );
+assert.strictEqual( (0).xType(), 'Number' );
+
+// check of type name
+assert.ok( Crisp.type.call( {}, 'Object' ) );
+assert.ok( Crisp.type.call( '', 'String' ) );
+assert.ok( Crisp.type.call( 0, 'Number' ) );
+
+assert.ok( {}.xType( 'Object' ) );
+assert.ok( ''.xType( 'String' ) );
+assert.ok( (0).xType( 'Number' ) );
+```
+
 
 ## Links
  * [Online Crisp.BaseJS module Documentation](http://opencrisp.wca.at/docs/module-BaseJS.html)

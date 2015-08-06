@@ -41,6 +41,81 @@ exports['xTo String'] = function(assert) {
 };
 
 
+// ## xType
+// [use BaseJS.type](http://opencrisp.wca.at/docs/module-BaseJS.html#type)
+
+// [use Array.xType](http://opencrisp.wca.at/docs/external-Array.html#xType)
+exports['xType Array'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.strictEqual( [].xType(), 'Array' );
+    assert.ok( [].xType('Array') );
+
+    done();
+};
+
+// [use Boolean.xType](http://opencrisp.wca.at/docs/external-Boolean.html#xType)
+exports['xType Boolean'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.strictEqual( (false).xType(), 'Boolean' );
+    assert.ok( (true).xType('Boolean') );
+
+    done();
+};
+
+// [use Date.xType](http://opencrisp.wca.at/docs/external-Date.html#xType)
+exports['xType Date'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.strictEqual( new Date().xType(), 'Date' );
+    assert.ok( new Date().xType('Date') );
+
+    done();
+};
+
+// [use Number.xType](http://opencrisp.wca.at/docs/external-Number.html#xType)
+exports['xType Number'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.strictEqual( (0).xType(), 'Number' );
+    assert.ok( (-1).xType('Number') );
+
+    done();
+};
+
+// [use Object.xType](http://opencrisp.wca.at/docs/external-Object.html#xType)
+exports['xType Object'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.strictEqual( {}.xType(), 'Object' );
+    assert.ok( {}.xType('Object') );
+
+    done();
+};
+
+// [use RegExp.xType](http://opencrisp.wca.at/docs/external-RegExp.html#xType)
+exports['xType RegExp'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.strictEqual( (/.*/).xType(), 'RegExp' );
+    assert.ok( new RegExp('.*').xType('RegExp') );
+
+    done();
+};
+
+// [use String.xType](http://opencrisp.wca.at/docs/external-String.html#xType)
+exports['xType String'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.strictEqual( ''.xType(), 'String' );
+    assert.ok( String().xType('String') );
+
+    done();
+};
+
+
+
 // ## toMath
 // [use Base.toMath](http://opencrisp.wca.at/docs/module-BaseJS.html#toMath)
 

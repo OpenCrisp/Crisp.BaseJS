@@ -61,8 +61,8 @@
      * (0).xTo(); // '0'
      * (1.5).xTo(); // '1.5'
      */
-    Object.defineProperty( Number.prototype, 'xTo', {
-        value: $$.to
-    });
+    // Object.defineProperty( Number.prototype, 'xTo', {
+    //     value: $$.to
+    // });
 
 })(Crisp);

@@ -174,8 +174,8 @@
      * @example
      * ['a'].xTo(); // '["a"]'
      */
-    Object.defineProperty( Array.prototype, 'xTo', {
-        value: $$.to
-    });
+    // Object.defineProperty( Array.prototype, 'xTo', {
+    //     value: $$.to
+    // });
 
 })(Crisp);

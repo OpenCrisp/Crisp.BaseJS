@@ -25,6 +25,8 @@
      */
     var toType = Object.prototype.toString;
 
+    var regTypeTrim = /^\[object ([a-z]+)\]$/i;
+
 
     /**
      * @private
@@ -74,6 +76,18 @@
         }
     }
 
+
+    function isType( object, type ) {
+        if ( type === 'field' ) {
+            return isType( object, 'String' ) || isType( object, 'Number' ) || isType( object, 'Boolean' ) || isType( object, 'Date' ) || isType( object, 'RegExp' );
+        }
+        else if ( type === 'Undefined' ) {
+            return ['[object Undefined]', '[object DOMWindow]'].indexOf( toType.call( object ) ) !== -1;
+        }
+        else {
+            return toType.call( object ) === '[object '.concat( type, ']' );
+        }
+    }
 
     /**
      * Global Crisp Object
@@ -243,12 +257,36 @@
          * Crisp.isType({}, "String"); // false
          * Crisp.isType([], "Number"); // false
          */
-        isType: function( object, type ) {
-            if ( type === 'Undefined' ) {
-                return ['[object Undefined]', '[object DOMWindow]'].indexOf( toType.call( object ) ) !== -1;
+        isType: isType,
+
+
+        /**
+         * get or check type of object
+         * @param       {external:String} [type]
+         * 
+         * @this        module:BaseJS
+         * @returns     {external:Boolean|external:String}
+         *
+         * @memberOf    module:BaseJS
+         *
+         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#type|use type}
+         * 
+         * @example
+         * Crisp.type.call("");  // "String"
+         * Crisp.type.call(0);   // "Number"
+         * 
+         * Crisp.type.call("", "String"); // true
+         * Crisp.type.call(0, "Number");  // true
+         * 
+         * Crisp.type.call({}, "String"); // false
+         * Crisp.type.call([], "Number"); // false
+         */
+        type: function( type ) {
+            if ( type ) {
+                return isType( this, type );
             }
             else {
-                return toType.call( object ) === '[object '.concat( type, ']' );
+                return toType.call( this ).replace( regTypeTrim, "$1" );
             }
         },
 

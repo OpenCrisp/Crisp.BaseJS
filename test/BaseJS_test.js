@@ -193,6 +193,30 @@ exports['isType Object'] = function(assert) {
     done();
 };
 
+exports['isType field'] = function(assert) {
+    var done = assert.done || assert.async();
+    
+    assert.ok( !Crisp.isType( {}, 'field' ) );
+    assert.ok( Crisp.isType( '', 'field' ) );
+    assert.ok( Crisp.isType( 0, 'field' ) );
+
+    done();
+};
+
+exports['type'] = function(assert) {
+    var done = assert.done || assert.async();
+    
+    assert.strictEqual( Crisp.type.call( {} ), 'Object' );
+    assert.strictEqual( Crisp.type.call( '' ), 'String' );
+    assert.strictEqual( Crisp.type.call( 0 ), 'Number' );
+
+    assert.ok( Crisp.type.call( {}, 'Object' ) );
+    assert.ok( Crisp.type.call( '', 'String' ) );
+    assert.ok( Crisp.type.call( 0, 'Number' ) );
+
+    done();
+};
+
 
 // ### toMath
 exports['toMath'] = function(assert) {

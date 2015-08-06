@@ -4,7 +4,7 @@
  * @see  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
  */
 
-(function($$) {
+// (function($$) {
 
     // var Break = $$.ns('util.control.Break');
     // var End = $$.ns('util.control.End');
@@ -22,8 +22,8 @@
      * @example
      * new Date('2015-07-13').xTo(); // '"2015-07-13T00:00:00.000Z"'
      */
-    Object.defineProperty( Date.prototype, 'xTo', {
-        value: $$.to
-    });
+    // Object.defineProperty( Date.prototype, 'xTo', {
+    //     value: $$.to
+    // });
 
-})(Crisp);
+// })(Crisp);

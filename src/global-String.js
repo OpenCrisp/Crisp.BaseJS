@@ -39,9 +39,9 @@
      * 'a'.xTo(); // '"a"'
      * 'b"c'.xTo(); // '"b\\"c"'
      */
-    Object.defineProperty( String.prototype, 'xTo', {
-        value: $$.to
-    });
+    // Object.defineProperty( String.prototype, 'xTo', {
+    //     value: $$.to
+    // });
 
 
     /**
