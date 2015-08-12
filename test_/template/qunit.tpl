@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>QUnit BaseJS Objects tests</title>
+  <title>QUnit <%= name %> tests</title>
   <link rel="stylesheet" href="../libs/qunit/qunit-1.18.0.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
   <script>
   var exports = {};
   </script>
-  <script src="../test/BaseJS-Objects_test.js"></script>
+  <script src="<%= testfile %>"></script>
   <script>
   for (var item in exports) {
     QUnit.test( item, exports[item] );

@@ -1,0 +1,30 @@
+{
+    "name": "crisp-base",
+    "main": "dist/crisp-base.js",
+    "version": "0.2.8",
+    "homepage": "http://opencrisp.wca.at",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/OpenCrisp/Crisp.BaseJS.git"
+    },
+    "authors": [
+        "Fabian Schmid <fabian.schmid@wca.at>"
+    ],
+    "description": "Base JavaScript functions for OpenCrisp to run in Bower",
+    "moduleType": [
+        "globals"
+    ],
+    "keywords": [
+        "OpenCrisp",
+        "async",
+        "namespace"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
+}

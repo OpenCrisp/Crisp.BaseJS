@@ -1,3 +1,5 @@
+<%= grunt.banner %>
+"use strict;"
 
 require("../src/BaseJS");
 require("../src/BaseJS-control");
@@ -8,4 +10,5 @@ require("../src/global-Number");
 require("../src/global-Object");
 require("../src/global-RegExp");
 require("../src/global-String");
-module.exports = require("../test/BaseJS_test");
+
+module.exports = require("<%= testfile %>");
