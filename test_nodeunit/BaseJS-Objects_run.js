@@ -1,7 +1,3 @@
-/*! OpenCrisp BaseJS - v0.2.9 - 2015-08-13
-* http://opencrisp.wca.at
-* Copyright (c) 2015 Fabian Schmid; Licensed MIT */
-
 "use strict;"
 
 require("../src/BaseJS");

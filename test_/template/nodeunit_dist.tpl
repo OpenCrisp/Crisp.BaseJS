@@ -1,4 +1,3 @@
-<%= grunt.banner %>
 "use strict;"
 
 require("../dist/<%= grunt.pkg.name %>");
