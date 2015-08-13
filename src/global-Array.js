@@ -87,7 +87,7 @@
      * @example
      * ['A','B'].xEach({
      *   success: function( item, index ) {
-     *     // return; got to the next item 
+     *     // return; go to the next item 
      *     // throw new Break(); stop each of items
      *     console.log('success:', index, item );
      *   },
@@ -108,6 +108,8 @@
      * ['A','B'].xEach({
      *   async: true,
      *   success: function( item, index ) {
+     *     // return; go to the next item 
+     *     // throw new Break(); stop each of items
      *     console.log('success:', index, item );
      *   },
      *   complete: function() {

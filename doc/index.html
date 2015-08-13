@@ -43,76 +43,290 @@
 
 
     <section>
-        <article><h1>Crisp.BaseJS</h1><p>Base JavaScript functions for OpenCrisp in NodeJS/IOjs and Browser Clients</p>
+        <article><h1>Crisp.BaseJS</h1><p>Base OpenCrisp JavaScript functions for Web-Clients and Server-Nodes </p>
 <p><a href="https://travis-ci.org/OpenCrisp/Crisp.BaseJS"><img src="https://travis-ci.org/OpenCrisp/Crisp.BaseJS.svg" alt="Build Status"></a>
 <a href="https://www.npmjs.com/package/crisp-base"><img src="https://img.shields.io/npm/dm/crisp-base.svg" alt="NPM Downloads"></a>
 <a href="https://www.npmjs.com/package/crisp-base"><img src="https://img.shields.io/npm/v/crisp-base.svg" alt="NPM Version"></a></p>
-<p>What is CRISP? Configuration Result In Simplified Programming</p>
-<h2>Index Table</h2><ul>
+<pre class="prettyprint source lang-javascript"><code>// return namespace objects
+Crisp.ns('my.namespace');
+
+// apply a function with arguments optional asyncronous
+Crisp.utilTick( this, callback, { args: [] }, async );
+
+// return the full JavaScript object name
+Crisp.toType( {} );                         // '[object Object]'
+
+// check the JavaScript object type with a smaller name
+Crisp.isType( {}, 'Object' );               // true</code></pre><h2>Index Table</h2><ul>
 <li><a href="#getting-started">Getting Started</a><ul>
-<li><a href="#nodejs">NodeJS</a></li>
-<li><a href="#browsers">Browsers</a></li>
+<li><a href="#server-nodes">Server-Nodes</a></li>
+<li><a href="#web-clients">Web-Clients</a></li>
+<li><a href="#development">Development</a></li>
 </ul>
 </li>
 <li><a href="#usage">Usage</a><ul>
-<li><a href="#namespace-example">Namespace example</a></li>
-<li><a href="#utiltick-example">utilTick example</a></li>
-<li><a href="#type-example">type example</a></li>
+<li><a href="#crispns">Crisp.ns()</a></li>
+<li><a href="#crisputiltick">Crisp.utilTick()</a></li>
+<li><a href="#crisptype">Crisp.type</a></li>
+<li><a href="#crispto">Crisp.to</a></li>
+<li><a href="#crispparse">Crisp.parse</a></li>
+<li><a href="#crispmath">Crisp.math</a></li>
+</ul>
+</li>
+<li><a href="#global-object-functions">Global Object Functions</a><ul>
+<li><a href="#user-content-xtype">.xType()</a></li>
+<li><a href="#user-content-xto">.xTo()</a></li>
+<li><a href="#user-content-xparse">.xParse()</a></li>
+<li><a href="#user-content-xadd">.xAdd()</a></li>
+<li><a href="#user-content-xeach">.xEach()</a></li>
+<li><a href="#user-content-xmath">.xMath()</a></li>
+<li><a href="#user-content-numberisinteger">Number.isInteger()</a></li>
+<li><a href="#user-content-regexpescape">RegExp.escape()</a></li>
 </ul>
 </li>
 <li><a href="#links">Links</a></li>
 </ul>
-<h2>Getting Started</h2><h3>NodeJS</h3><p>Use the Node Package Manager (npm) for install crisp-base</p>
-<pre class="prettyprint source"><code>npm install crisp-base</code></pre><p>or use all of OpenCrisp Utils</p>
-<pre class="prettyprint source"><code>npm install crisp-util</code></pre><h3>Browsers</h3><pre class="prettyprint source lang-html"><code>&lt;script type=&quot;text/javascript&quot; src=&quot;dist/crisp-base.min.js&quot;>&lt;/script></code></pre><h2>Usage</h2><pre class="prettyprint source lang-javascript"><code>// global value of Crisp
+<h2>Getting Started</h2><h3>Server-Nodes</h3><p>Use <a href="https://www.npmjs.org">Node Package Manager (npm)</a> to install <code>crisp-base</code> for <a href="https://nodejs.org/">Node.js</a> and <a href="https://iojs.org/">io.js</a></p>
+<pre class="prettyprint source"><code>$ npm install crisp-base</code></pre><pre class="prettyprint source lang-javascript"><code>// use package
+require(&quot;crisp-base&quot;);</code></pre><p>or use the <a href="https://github.com/OpenCrisp/Crisp.UtilJS">OpenCrisp UtilJS</a> wraper</p>
+<pre class="prettyprint source"><code>$ npm install crisp-util
+
+```javascript
+// use package
+require(&quot;crisp-util&quot;);
+```</code></pre><h3>Web-Clients</h3><p>Use <a href="http://bower.io/">Bower</a> to install <code>crisp-base</code> for Browsers APP's and other front-end workflows.</p>
+<pre class="prettyprint source"><code>$ bower install crisp-base</code></pre><pre class="prettyprint source lang-html"><code>&lt;!-- use package -->
+&lt;script type=&quot;text/javascript&quot; src=&quot;dist/crisp-base.min.js&quot;>&lt;/script></code></pre><p>or use the <a href="https://github.com/OpenCrisp/Crisp.UtilJS">OpenCrisp UtilJS</a> wraper</p>
+<pre class="prettyprint source"><code>$ bower install crisp-util</code></pre><pre class="prettyprint source lang-html"><code>&lt;!-- use package -->
+&lt;script type=&quot;text/javascript&quot; src=&quot;dist/crisp-util.min.js&quot;>&lt;/script></code></pre><h2>Development</h2><p>Use <a href="https://git-scm.com/">Git</a> to clone <code>Crisp.BaseJS</code> from <a href="https://github.com/OpenCrisp/Crisp.BaseJS">GitHub</a> to develop the repository with <a href="http://gruntjs.com/">Grunt</a></p>
+<pre class="prettyprint source"><code># Clone:
+$ git clone https://github.com/OpenCrisp/Crisp.BaseJS.git
+
+# Build: test, concat, test, minify, test
+$ grunt
+
+# Test: original sourcecode for developer (included in build)
+$ grunt t
+
+# Run all test-scripts on Unix
+$ sh grunt-tests.sh</code></pre><h2>Usage</h2><p>How to use Crisp.BaseJS funktion in JavaScript</p>
+<pre class="prettyprint source lang-javascript"><code>// global value of Crisp
 var $$ = Crisp;
 
 // private function
 (function($$) {
   // code
-})(Crisp);</code></pre><h3>Namespace example</h3><pre class="prettyprint source lang-javascript"><code>
-// GET Namespace
+})(Crisp);</code></pre><h3>Crisp.ns()</h3><p>How to use <code>Crisp.ns()</code> namespaces in JavaScript</p>
+<pre class="prettyprint source lang-javascript"><code>// GET namespace
 Crisp.ns('a'); // return reference of a = {}
 
-// SET and GET Namespaces
-Crisp.ns('b', { a: 'A' }); // return reference of b = { a: 'A' }</code></pre><h3>utilTick example</h3><p>synchronous execution of an anonymous function</p>
-<pre class="prettyprint source lang-javascript"><code>Crisp.utilTick({ a: 'A' }, function() {
+// SET and GET namespaces
+Crisp.ns('b', { a: 'A' }); // return reference of b = { a: 'A' }</code></pre><h3>Crisp.utilTick()</h3><p>How to use <code>Crisp.utilTick()</code> in JavaScript</p>
+<pre class="prettyprint source lang-javascript"><code>// synchronous execution of an anonymous function
+Crisp.utilTick({ a: 'A' }, function() {
   console.log(this);
 });
-console.log('end');
+
+console.log('END');
 // logs:
 // { &quot;a&quot;: &quot;A&quot; }
-// end</code></pre><p>asynchronous exetution of an named function</p>
-<pre class="prettyprint source lang-javascript"><code>function test( b ) {
+// END</code></pre><pre class="prettyprint source lang-javascript"><code>// asynchronous exetution of an named function
+function test( b ) {
   console.log( b.c );
 }
 
 Crisp.utilTick( { a: 'A' }, test, { args: 'C' }, true );
+
+console.log('END');
+// logs:
+// END
+// { &quot;a&quot;: &quot;A&quot; }</code></pre><h3>Crisp.to()</h3><p>How to use <code>Crisp.to()</code> in JavaScript</p>
+<pre class="prettyprint source lang-javascript"><code>Crisp.to.call('a');         // '&quot;a&quot;'
+Crisp.to.call({ a: 'A' });  // '{&quot;a&quot;:&quot;A&quot;}'</code></pre><h3>Crisp.parse()</h3><p>How to use <code>Crisp.parse()</code> in JavaScript</p>
+<pre class="prettyprint source lang-javascript"><code>Crisp.parse.call('&quot;a&quot;');        // 'a'
+Crisp.parse.call('{&quot;a&quot;:&quot;A&quot;}');  // { a: 'A' }</code></pre><h3>Crisp.type()</h3><p>How to use <code>Crisp.type()</code> in JavaScript</p>
+<pre class="prettyprint source lang-javascript"><code>// GET the small type name of JavaScript objects
+Crisp.type.call( '' );          // 'String'
+Crisp.type.call( 0 );           // 'Number'
+Crisp.type.call( true );        // 'Boolean'
+Crisp.type.call( new Date() );  // 'Date'
+Crisp.type.call( {} );          // 'Object'
+Crisp.type.call( [] );          // 'Array'
+Crisp.type.call( /a/g );        // 'RegExp'
+
+Crisp.type.call( null );        // 'Undefined'
+Crisp.type.call( undefined );   // 'Undefined'
+
+// CHECK the small type name of JavaScript objects
+Crisp.type.call( '',         'String' );     // true
+Crisp.type.call( 0,          'Number' );     // true
+Crisp.type.call( true,       'Boolean' );    // true
+Crisp.type.call( new Date(), 'Date' );       // true
+Crisp.type.call( {},         'Object' );     // true
+Crisp.type.call( [],         'Array' );      // true
+Crisp.type.call( /a/g,       'RegExp' );     // true
+
+Crisp.type.call( null,       'Undefined' );     // true
+Crisp.type.call( undefined,  'Undefined' );  // true
+
+// CHECK group of object type
+Crisp.type.call(         '', 'field' );  // true
+Crisp.type.call(          0, 'field' );  // true
+Crisp.type.call(       true, 'field' );  // true
+Crisp.type.call( new Date(), 'field' );  // true
+Crisp.type.call(       /a/g, 'field' );  // true</code></pre><h3>Crisp.math()</h3><p>How to use <code>Crisp.math()</code> in JavaScript</p>
+<pre class="prettyprint source lang-javascript"><code>Crisp.math.call( -1, 'abs'); // 1</code></pre><h2>Global Object Functions</h2><h3>.xType()</h3><p>How to use <code>.xType()</code> prototype functions on JavaScript objects.
+@implements <code>Crisp.type</code></p>
+<pre class="prettyprint source lang-javascript"><code>// GET the small type name of JavaScript objects
+    ''.xType();  // 'String'
+   (0).xType();  // 'Number'
+(true).xType();  // 'Boolean'
+Date().xType();  // 'Date'
+    {}.xType();  // 'Object'
+    [].xType();  // 'Array'
+(/a/g).xType();  // 'RegExp'
+
+// CHECK the small type name of JavaScript objects
+    ''.xType( 'String' );   // true
+   (0).xType( 'Number' );   // true
+(true).xType( 'Boolean' );  // true
+Date().xType( 'Date' );     // true
+    {}.xType( 'Object' );   // true
+    [].xType( 'Array' );    // true
+(/a/g).xType( 'RegExp' );   // true</code></pre><h3>.xTo()</h3><p>How to use <code>.xTo()</code> prototype functions on JavaScript objects.
+@implements <code>Crisp.to</code> &lt;&lt; <code>JSON.stringify</code></p>
+<pre class="prettyprint source lang-javascript"><code>// GET the JSON string of JavaScript objects
+               'a'.xTo();  // '&quot;a&quot;'
+               (0).xTo();  // '0'
+            (true).xTo();  // 'true'
+Date('2015-07-13').xTo();  // '&quot;2015-07-13T00:00:00.000Z&quot;'
+        { a: &quot;a&quot; }.xTo();  // '{&quot;a&quot;:&quot;a&quot;}'
+          [ 1, 0 ].xTo();  // '[1,2]'
+            (/a/g).xTo();  // '&quot;/a/g&quot;'</code></pre><h3>.xParse()</h3><p>How to use <code>String().xParse</code> function on JavaScript.
+@implements <code>Crisp.parse</code> &lt;&lt; <code>JSON.parse</code></p>
+<p>Parse the given JSON typed string</p>
+<pre class="prettyprint source lang-javascript"><code>// String
+'&quot;a&quot;'.xParse(); // 'a'
+'&quot;b\\&quot;c&quot;'.xParse(); // 'b&quot;c'
+
+// Number
+'1.5'.xParse(); // 1.5
+
+// Boolean
+'true'.xParse(); // true
+
+// Date
+'&quot;2015-07-13T00:00:00.000Z&quot;'.xParse(); // Date()
+
+// Object
+'{&quot;a&quot;:&quot;A&quot;}'.xParse(); // { a: 'A' }
+
+// Array
+'[&quot;a&quot;]'.xParse(); // ['a']</code></pre><h3>.xAdd()</h3><p>How to use <code>Array().xAdd()</code> prototype functions on JavaScript.
+.xAdd combines the given arguments of an Array and includes all items.</p>
+<p>The difference to <code>[].concat()</code> is to ignore <code>undefined</code> items in Arrays.</p>
+<pre class="prettyprint source lang-javascript"><code>// standard
+[].xAdd('a');           // ['a']
+[].xAdd( 'a', 'b' );    // ['a','b']
+[].xAdd([ 'a', 'b' ]);  // ['a','b']
+[].xAdd(['a'], ['b']);  // ['a','b']
+
+// empty items
+[].xAdd();           // []
+[].xAdd([]);         // []
+[].xAdd(['a'], []);  // ['a']
+
+// undefined items
+[].xAdd( undefined );           // []
+[].xAdd( undefined, 'b' );      // ['b']
+[].xAdd([ 'a', undefined ]);    // ['a']
+[].xAdd(['a'], [ undefined ]);  // ['a']</code></pre><h3>.xEach()</h3><p>How to use <code>.xEach()</code> prototype functions on JavaScript objects.
+@implements <code>Crisp.toMath</code></p>
+<pre class="prettyprint source lang-javascript"><code>// use `throw new Break()` to stop xEach and go to callback.complete
+var Break = Crisp.ns('util.control.Break');</code></pre><pre class="prettyprint source lang-javascript"><code>// synchronus Object.xEach()
+{a:'A',b:'B'}.xEach({
+  success: function( item, index ) {
+    // return; go to the next item 
+    // throw new Break(); stop xEach of items
+    console.log('Success:', index, item );
+  },
+  complete: function() {
+    console.log('Complete');
+  }
+});
+console.log('end');
+// logs:
+// Success: a A
+// Success: b B
+// Complete
+// end</code></pre><pre class="prettyprint source lang-javascript"><code>// asynchronus Object.xEach()
+{a:'A',b:'B'}.xEach({
+  async: true,
+  success: function( item, index ) {
+    // return; go to the next item 
+    // throw new Break(); stop each of items
+    console.log('Success:', index, item );
+  },
+  complete: function() {
+    console.log('Complete');
+  }
+});
 console.log('end');
 // logs:
 // end
-// { &quot;a&quot;: &quot;A&quot; }</code></pre><h3>type example</h3><pre class="prettyprint source lang-javascript"><code>// get the type name
-assert.strictEqual( Crisp.type.call( {} ), 'Object' );
-assert.strictEqual( Crisp.type.call( '' ), 'String' );
-assert.strictEqual( Crisp.type.call( 0 ), 'Number' );
+// Success: a A
+// Success: b B
+// Complete</code></pre><pre class="prettyprint source lang-javascript"><code>// syncronus Array.xEach()
+['A','B'].xEach({
+  success: function( item, index ) {
+    // return; go to the next item 
+    // throw new Break(); stop each of items
+    console.log('Success:', index, item );
+  },
+  complete: function() {
+    console.log('Complete');
+  }
+});
+console.log('end');
+// logs:
+// Success: 0 A
+// Success: 1 B
+// Complete
+// end</code></pre><pre class="prettyprint source lang-javascript"><code>// asynchronus Array.xEach()
+['A','B'].xEach({
+  async: true,
+  success: function( item, index ) {
+    // return; go to the next item 
+    // throw new Break(); stop each of items
+    console.log('Success:', index, item );
+  },
+  complete: function() {
+    console.log('Complete');
+  }
+});
+console.log('end');
+// logs:
+// end
+// Success: 0 A
+// Success: 1 B
+// Complete</code></pre><h3>.xMath()</h3><p>How to use <code>.xMath()</code> prototype functions on JavaScript objects.
+@implements <code>Crisp.math</code></p>
+<pre class="prettyprint source lang-javascript"><code>// GET the return of `Math[name].call(this)` function
+   (1).xMath('abs');  // 1
+  (-1).xMath('abs');  // 1
+(-0.1).xMath('abs');  // 0.1
 
-assert.strictEqual( {}.xType(), 'Object' );
-assert.strictEqual( ''.xType(), 'String' );
-assert.strictEqual( (0).xType(), 'Number' );
-
-// check of type name
-assert.ok( Crisp.type.call( {}, 'Object' ) );
-assert.ok( Crisp.type.call( '', 'String' ) );
-assert.ok( Crisp.type.call( 0, 'Number' ) );
-
-assert.ok( {}.xType( 'Object' ) );
-assert.ok( ''.xType( 'String' ) );
-assert.ok( (0).xType( 'Number' ) );</code></pre><h2>Links</h2><ul>
-<li><a href="http://opencrisp.wca.at/docs/module-BaseJS.html">Online Crisp.BaseJS module Documentation</a></li>
-<li><a href="http://opencrisp.wca.at/tutorials/BaseJS_test.html">More Examples on opencrisp.wca.at</a></li>
+   '1'.xMath('abs');  // 1
+  '-1'.xMath('abs');  // 1
+'-0.1'.xMath('abs');  // 0.1</code></pre><h3>Number.isInteger()</h3><p>How to use ES6 <code>Number.isInteger()</code> function on JavaScript.</p>
+<pre class="prettyprint source lang-javascript"><code>Number.isInteger(1);   // true
+Number.isInteger(0.5); // false</code></pre><h3>RegExp.escape()</h3><p>How to use <code>RegExp.escape()</code> function on JavaScript.</p>
+<pre class="prettyprint source lang-javascript"><code>RegExp.escape('a.b'); // 'a\\.b'</code></pre><h2>Links</h2><ul>
+<li><a href="http://opencrisp.wca.at/docs/module-BaseJS.html">Online Crisp.BaseJS module documentation</a></li>
+<li><a href="http://opencrisp.wca.at/tutorials/BaseJS_test.html">More examples on opencrisp.wca.at</a></li>
 <li><a href="https://github.com/OpenCrisp/Crisp.BaseJS">Repository on GitHub.com</a></li>
 <li><a href="https://www.npmjs.com/package/crisp-base">npm package on npm.com</a></li>
-<li><a href="https://travis-ci.org/OpenCrisp/Crisp.BaseJS">Build History on Travis-ci.org</a></li>
+<li><a href="https://travis-ci.org/OpenCrisp/Crisp.BaseJS">Build history on Travis-ci.org</a></li>
 </ul></article>
     </section>
 
@@ -130,7 +344,7 @@ assert.ok( (0).xType( 'Number' ) );</code></pre><h2>Links</h2><ul>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Wed Aug 12 2015 16:47:14 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Thu Aug 13 2015 21:24:08 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

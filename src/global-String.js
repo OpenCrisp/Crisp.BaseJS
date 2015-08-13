@@ -11,6 +11,7 @@
 
 
     /**
+     * @deprecated use .xMath()
      * @function external:String.prototype.toMath
      * @implements {module:BaseJS.toMath}
      * 
@@ -23,6 +24,21 @@
      */
     Object.defineProperty( String.prototype, 'toMath', {
         value: $$.toMath
+    });
+
+    /**
+     * @function external:String.prototype.xMath
+     * @implements {module:BaseJS.math}
+     * 
+     * @param {external:String} name name of Math Function
+     *
+     * @example
+     * '1'.xMath('abs'); // 1
+     * '-1'.xMath('abs'); // 1
+     * '-0.1'.xMath('abs'); // 0.1
+     */
+    Object.defineProperty( String.prototype, 'xMath', {
+        value: $$.math
     });
 
 
@@ -54,8 +70,12 @@
      * @return {AnyItem}
      *
      * @example
-     * // Array
-     * '["a"]'.xParse(); // ['a']
+     * // String
+     * '"a"'.xParse(); // 'a'
+     * '"b\\"c"'.xParse(); // 'b"c'
+     * 
+     * // Number
+     * '1.5'.xParse(); // 1.5
      * 
      * // Boolean
      * 'true'.xParse(); // true
@@ -63,15 +83,11 @@
      * // Date
      * '"2015-07-13T00:00:00.000Z"'.xParse(); // Date()
      * 
-     * // Number
-     * '1.5'.xParse(); // 1.5
-     * 
      * // Object
      * '{"a":"A"}'.xParse(); // { a: 'A' }
      * 
-     * // String
-     * '"a"'.xParse(); // 'a'
-     * '"b\\"c"'.xParse(); // 'b"c'
+     * // Array
+     * '["a"]'.xParse(); // ['a']
      */
     Object.defineProperty( String.prototype, 'xParse', {
         value: $$.parse

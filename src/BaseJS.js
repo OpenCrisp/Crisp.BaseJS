@@ -23,7 +23,7 @@
      * @example
      * toType.call('a') // [object String]
      */
-    var toType = Object.prototype.toString;
+    var toTypeString = Object.prototype.toString;
 
     var regTypeTrim = /^\[object ([a-z]+)\]$/i;
 
@@ -76,16 +76,22 @@
         }
     }
 
+    function toType( object ) {
+        var type = toTypeString.call( object ).replace( regTypeTrim, "$1" );
+
+        if ( ['global', 'Null', 'DOMWindow'].indexOf( type ) !== -1 ) {
+            type = 'Undefined';
+        }
+
+        return type;
+    }
 
     function isType( object, type ) {
         if ( type === 'field' ) {
             return isType( object, 'String' ) || isType( object, 'Number' ) || isType( object, 'Boolean' ) || isType( object, 'Date' ) || isType( object, 'RegExp' );
         }
-        else if ( type === 'Undefined' ) {
-            return ['[object Undefined]', '[object DOMWindow]'].indexOf( toType.call( object ) ) !== -1;
-        }
         else {
-            return toType.call( object ) === '[object '.concat( type, ']' );
+            return toType( object ) === type;
         }
     }
 
@@ -218,6 +224,7 @@
 
 
         /**
+         * @deprecated
          * @param       {AnyItem} object
          * 
          * @this        module:BaseJS
@@ -233,13 +240,12 @@
          * Crisp.toType("") // "[object String]"
          * Crisp.toType(0) // "[object Number]"
          */
-        toType: function( object ) {
-            return toType.call( object );
-        },
+        toType: toType,
 
 
         /**
          * check type of object
+         * @deprecated
          * @param       {AnyItem}         object
          * @param       {external:String} type
          * 
@@ -259,56 +265,6 @@
          */
         isType: isType,
 
-
-        /**
-         * get or check type of object
-         * @param       {external:String} [type]
-         * 
-         * @this        module:BaseJS
-         * @returns     {external:Boolean|external:String}
-         *
-         * @memberOf    module:BaseJS
-         *
-         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#type|use type}
-         * 
-         * @example
-         * Crisp.type.call("");  // "String"
-         * Crisp.type.call(0);   // "Number"
-         * 
-         * Crisp.type.call("", "String"); // true
-         * Crisp.type.call(0, "Number");  // true
-         * 
-         * Crisp.type.call({}, "String"); // false
-         * Crisp.type.call([], "Number"); // false
-         */
-        type: function( type ) {
-            if ( type ) {
-                return isType( this, type );
-            }
-            else {
-                return toType.call( this ).replace( regTypeTrim, "$1" );
-            }
-        },
-
-
-        /**
-         * @param       {external:String} name name of Math Function
-         * 
-         * @this        module:BaseJS
-         * @return      {external:Number}
-         *
-         * @memberOf    module:BaseJS
-         *
-         * @see external:String#toMath
-         * 
-         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#tomath|use toMath}
-         *
-         * @example
-         * Crisp.toMath.call( -1, 'abs'); // 1
-         */
-        toMath: function( name ) {
-            return Math[ name ].call( Math, this );
-        },
 
 
         /**
@@ -353,6 +309,95 @@
             return JSON.parse( this.toString() );
         },
 
+        /**
+         * get or check type of object
+         * @param       {external:String} [type]
+         * 
+         * @this        module:BaseJS
+         * @returns     {external:Boolean|external:String}
+         *
+         * @memberOf    module:BaseJS
+         *
+         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#type|use type}
+         * 
+         * @example
+         * // GET the small type name of JavaScript objects
+         * Crisp.type.call( '' );          // 'String'
+         * Crisp.type.call( 0 );           // 'Number'
+         * Crisp.type.call( true );        // 'Boolean'
+         * Crisp.type.call( new Date() );  // 'Date'
+         * Crisp.type.call( {} );          // 'Object'
+         * Crisp.type.call( [] );          // 'Array'
+         * Crisp.type.call( /a/g );        // 'RegExp'
+         * 
+         * // CHECK the small type name of JavaScript objects
+         * Crisp.type.call( '',         'String' );     // true
+         * Crisp.type.call( 0,          'Number' );     // true
+         * Crisp.type.call( true,       'Boolean' );    // true
+         * Crisp.type.call( new Date(), 'Date' );       // true
+         * Crisp.type.call( {},         'Object' );     // true
+         * Crisp.type.call( null,       'Object' );     // true
+         * Crisp.type.call( [],         'Array' );      // true
+         * Crisp.type.call( /a/g,       'RegExp' );     // true
+         * Crisp.type.call( undefined,  'Undefined' );  // true
+         * 
+         * // CHECH group of object type
+         * Crisp.type.call(         '', 'field' );  // true
+         * Crisp.type.call(          0, 'field' );  // true
+         * Crisp.type.call(       true, 'field' );  // true
+         * Crisp.type.call( new Date(), 'field' );  // true
+         * Crisp.type.call(       /a/g, 'field' );  // true
+         */
+        type: function( type ) {
+            if ( type ) {
+                return isType( this, type );
+            }
+            else {
+                return toType( this );
+            }
+        },
+
+
+        /**
+         * @deprecated
+         * @param       {external:String} name name of Math Function
+         * 
+         * @this        module:BaseJS
+         * @return      {external:Number}
+         *
+         * @memberOf    module:BaseJS
+         *
+         * @see external:String#toMath
+         * 
+         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#tomath|use toMath}
+         *
+         * @example
+         * Crisp.toMath.call( -1, 'abs'); // 1
+         */
+        toMath: function( name ) {
+            console.warn('Crisp.toMath is not longer supportet! Use Crisp.math');
+            return Math[ name ].call( Math, this );
+        },
+
+        /**
+         * @param       {external:String} name name of Math Function
+         * 
+         * @this        module:BaseJS
+         * @return      {external:Number}
+         *
+         * @memberOf    module:BaseJS
+         *
+         * @see external:String#xMath
+         * 
+         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#tomath|use math}
+         *
+         * @example
+         * Crisp.math.call( -1, 'abs'); // 1
+         */
+        math: function( name ) {
+            return Math[ name ].call( Math, this );
+        },
+
 
         /**
          * create JSON data format
@@ -369,6 +414,7 @@
          * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#tojson|use toJson}
          */
         toJson: function( prity ) {
+            console.warn('Crisp.toJson is not longer supportet! Use Crisp.to');
             return prity ? JSON.stringify( this, null, "\t" ) : JSON.stringify( this );
         },
 
@@ -392,6 +438,7 @@
          * Crisp.parseJson.call('{"a":"A"}'); // { "a": "A" }
          */
         parseJson: function() {
+            console.warn('Crisp.parseJson is not longer supportet! Use Crisp.parse');
             return JSON.parse( this.toString() );
         }
 

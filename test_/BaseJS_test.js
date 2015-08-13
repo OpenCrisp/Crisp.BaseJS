@@ -133,10 +133,11 @@ exports['utilTick async'] = function(assert) {
 exports['toType'] = function(assert) {
     var done = assert.done || assert.async();
     
-    assert.strictEqual( Crisp.toType( '' ), '[object String]' );
-    assert.strictEqual( Crisp.toType( 0 ), '[object Number]' );
-    assert.strictEqual( Crisp.toType( {} ), '[object Object]' );
-    assert.strictEqual( Crisp.toType( [] ), '[object Array]' );
+    assert.strictEqual( Crisp.toType( '' ),   'String' );
+    assert.strictEqual( Crisp.toType( 0 ),    'Number' );
+    assert.strictEqual( Crisp.toType( {} ),   'Object' );
+    assert.strictEqual( Crisp.toType( [] ),   'Array' );
+    assert.strictEqual( Crisp.toType( null ), 'Undefined' );
 
     done();
 };
@@ -145,7 +146,7 @@ exports['toType var'] = function(assert) {
     var done = assert.done || assert.async();
     
     var a;
-    assert.ok( ['[object Undefined]','[object DOMWindow]'].indexOf( Crisp.toType( a ) ) !== -1 );
+    assert.ok( ['Undefined','DOMWindow'].indexOf( Crisp.toType( a ) ) !== -1 );
 
     done();
 };
@@ -154,8 +155,8 @@ exports['toType Object'] = function(assert) {
     var done = assert.done || assert.async();
     
     var b = {};
-    assert.strictEqual( Crisp.toType( b ), '[object Object]' );
-    assert.ok( ['[object Undefined]','[object DOMWindow]'].indexOf( Crisp.toType( b.a ) ) !== -1 );
+    assert.strictEqual( Crisp.toType( b ), 'Object' );
+    assert.ok( ['Undefined','DOMWindow'].indexOf( Crisp.toType( b.a ) ) !== -1 );
 
     done();
 };
@@ -166,10 +167,11 @@ exports['toType Object'] = function(assert) {
 exports['isType'] = function(assert) {
     var done = assert.done || assert.async();
     
-    assert.ok( Crisp.isType( '', 'String' ) );
-    assert.ok( Crisp.isType( 0, 'Number' ) );
-    assert.ok( Crisp.isType( {}, 'Object' ) );
-    assert.ok( Crisp.isType( [], 'Array' ) );
+    assert.ok( Crisp.isType( '',   'String' ) );
+    assert.ok( Crisp.isType( 0,    'Number' ) );
+    assert.ok( Crisp.isType( {},   'Object' ) );
+    assert.ok( Crisp.isType( null, 'Undefined' ) );
+    assert.ok( Crisp.isType( [],   'Array' ) );
 
     done();
 };
@@ -206,24 +208,44 @@ exports['isType field'] = function(assert) {
 exports['type'] = function(assert) {
     var done = assert.done || assert.async();
     
-    assert.strictEqual( Crisp.type.call( {} ), 'Object' );
-    assert.strictEqual( Crisp.type.call( '' ), 'String' );
-    assert.strictEqual( Crisp.type.call( 0 ), 'Number' );
+    assert.strictEqual( Crisp.type.call( '' ),         'String' );
+    assert.strictEqual( Crisp.type.call( 0 ),          'Number' );
+    assert.strictEqual( Crisp.type.call( true ),       'Boolean' );
+    assert.strictEqual( Crisp.type.call( new Date() ), 'Date' );
+    assert.strictEqual( Crisp.type.call( {} ),         'Object' );
+    assert.strictEqual( Crisp.type.call( [] ),         'Array' );
+    assert.strictEqual( Crisp.type.call( /a/g ),       'RegExp' );
 
-    assert.ok( Crisp.type.call( {}, 'Object' ) );
-    assert.ok( Crisp.type.call( '', 'String' ) );
-    assert.ok( Crisp.type.call( 0, 'Number' ) );
+    assert.strictEqual( Crisp.type.call( null ),       'Undefined' );
+    assert.strictEqual( Crisp.type.call( undefined ),  'Undefined' );
+
+    assert.ok( Crisp.type.call( '',         'String' ) );     // true
+    assert.ok( Crisp.type.call( 0,          'Number' ) );     // true
+    assert.ok( Crisp.type.call( true,       'Boolean' ) );    // true
+    assert.ok( Crisp.type.call( new Date(), 'Date' ) );       // true
+    assert.ok( Crisp.type.call( {},         'Object' ) );     // true
+    assert.ok( Crisp.type.call( [],         'Array' ) );      // true
+    assert.ok( Crisp.type.call( /a/g,       'RegExp' ) );     // true
+
+    assert.ok( Crisp.type.call( null,       'Undefined' ) );  // true
+    assert.ok( Crisp.type.call( undefined,  'Undefined' ) );  // true
+
+    assert.ok( Crisp.type.call(         '', 'field' ) );
+    assert.ok( Crisp.type.call(          0, 'field' ) );
+    assert.ok( Crisp.type.call(       true, 'field' ) );
+    assert.ok( Crisp.type.call( new Date(), 'field' ) );
+    assert.ok( Crisp.type.call(       /a/g, 'field' ) );
 
     done();
 };
 
 
-// ### toMath
-exports['toMath'] = function(assert) {
+// ### math
+exports['math'] = function(assert) {
     var done = assert.done || assert.async();
     
     var b = Number(-1);
-    assert.strictEqual( Crisp.toMath.call( b, 'abs' ), 1 );
+    assert.strictEqual( Crisp.math.call( b, 'abs' ), 1 );
 
     done();
 };

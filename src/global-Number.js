@@ -30,6 +30,7 @@
 
 
     /**
+     * @deprecated use .xMath()
      * @function external:Number.prototype.toMath
      * @implements {module:BaseJS.toMath}
      * 
@@ -45,6 +46,24 @@
      */
     Object.defineProperty( Number.prototype, 'toMath', {
         value: $$.toMath
+    });
+
+    /**
+     * @function external:Number.prototype.xMath
+     * @implements {module:BaseJS.math}
+     * 
+     * @param {external:String} name name of Math Function
+     *
+     * @this external:Number
+     * @return {external:Math} return Math[name].apply(this, thisArg)
+     *
+     * @example
+     * (1).xMath('abs'); // 1
+     * (-1).xMath('abs'); // 1
+     * (-0.1).xMath('abs'); // 0.1
+     */
+    Object.defineProperty( Number.prototype, 'xMath', {
+        value: $$.math
     });
 
 

@@ -4,7 +4,7 @@
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
  */
 
-(function() {
+(function($$) {
 
     // var Break = $$.ns('util.control.Break');
     // var End = $$.ns('util.control.End');
@@ -38,5 +38,23 @@
     RegExp.escape = RegExp.escape || function( str ) {
         return str.replace( regExpEscape, "\\$&");
     };
+
+    /**
+     * @function external:Object.prototype.xTo
+     * @implements {module:BaseJS.to}
+     * 
+     * @param {external:String} [type="json"] data format
+     *
+     * @this external:Object
+     * @return {external:String}
+     *
+     * @example
+     * { a: 'A' }.xTo(); // '{"a":"A"}'
+     */
+    Object.defineProperty( RegExp.prototype, 'xTo', {
+        value: function() {
+            return $$.to.call( this.toString() );
+        }
+    });
 
 })(Crisp);

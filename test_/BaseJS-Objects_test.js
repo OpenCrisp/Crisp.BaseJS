@@ -1,46 +1,4 @@
 
-// ## xTo
-// [use BaseJS.to](http://opencrisp.wca.at/docs/module-BaseJS.html#to)
-
-// [use Boolean.xTo](http://opencrisp.wca.at/docs/external-Boolean.html#xTo)
-exports['xTo Boolean'] = function(assert) {
-    var done = assert.done || assert.async();
-
-    assert.equal( (false).xTo(), 'false' );
-    assert.equal( (true).xTo(), 'true' );
-
-    done();
-};
-
-// [use Date.xTo](http://opencrisp.wca.at/docs/external-Date.html#xTo)
-exports['xTo Date'] = function(assert) {
-    var done = assert.done || assert.async();
-
-    assert.equal( new Date('2015-07-13').xTo(), '"2015-07-13T00:00:00.000Z"' );
-
-    done();
-};
-
-// [use Number.xTo](http://opencrisp.wca.at/docs/external-Number.html#xTo)
-exports['xTo Number'] = function(assert) {
-    var done = assert.done || assert.async();
-
-    assert.equal( (1).xTo(), '1' );
-
-    done();
-};
-
-// [use String.xTo](http://opencrisp.wca.at/docs/external-String.html#xTo)
-exports['xTo String'] = function(assert) {
-    var done = assert.done || assert.async();
-
-    assert.equal( 'a'.xTo(), '"a"' );
-    assert.equal( 'b"c'.xTo(), '"b\\"c"' );
-
-    done();
-};
-
-
 // ## xType
 // [use BaseJS.type](http://opencrisp.wca.at/docs/module-BaseJS.html#type)
 
@@ -116,42 +74,77 @@ exports['xType String'] = function(assert) {
 
 
 
-// ## toMath
-// [use Base.toMath](http://opencrisp.wca.at/docs/module-BaseJS.html#toMath)
+// ## xTo
+// [use BaseJS.to](http://opencrisp.wca.at/docs/module-BaseJS.html#to)
 
-// [use Number.toMath](http://opencrisp.wca.at/docs/external-Number.html#toMath)
-exports['toMath Number'] = function(assert) {
+// [use String.xTo](http://opencrisp.wca.at/docs/external-String.html#xTo)
+exports['xTo String'] = function(assert) {
     var done = assert.done || assert.async();
 
-    assert.equal( (1).toMath('abs'), 1 );
-    assert.equal( (-1).toMath('abs'), 1 );
-    assert.equal( (-0.1).toMath('abs'), 0.1 );
+    assert.equal( 'a'.xTo(), '"a"' );
+    assert.equal( 'b"c'.xTo(), '"b\\"c"' );
 
     done();
 };
 
-// [use String.toMath](http://opencrisp.wca.at/docs/external-String.html#toMath)
-exports['toMath String'] = function(assert) {
+// [use Number.xTo](http://opencrisp.wca.at/docs/external-Number.html#xTo)
+exports['xTo Number'] = function(assert) {
     var done = assert.done || assert.async();
 
-    assert.equal( '1'.toMath('abs'), 1 );
-    assert.equal( '-1'.toMath('abs'), 1 );
-    assert.equal( '-0.1'.toMath('abs'), 0.1 );
+    assert.equal( (1).xTo(), '1' );
 
     done();
 };
 
-
-// ## toURLParam
-// [use Objects.toURLParam](http://opencrisp.wca.at/docs/external-Object.html#toURLParam)
-exports['toURLParam Object'] = function(assert) {
+// [use Boolean.xTo](http://opencrisp.wca.at/docs/external-Boolean.html#xTo)
+exports['xTo Boolean'] = function(assert) {
     var done = assert.done || assert.async();
 
-    assert.equal( { a: 'A' }.toURLParam(), 'a=A' );
-    assert.equal( { a: 'A', b: true }.toURLParam(), 'a=A&b=true' );
-    
+    assert.equal( (false).xTo(), 'false' );
+    assert.equal( (true).xTo(), 'true' );
+
     done();
 };
+
+// [use Date.xTo](http://opencrisp.wca.at/docs/external-Date.html#xTo)
+exports['xTo Date'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.equal( new Date('2015-07-13').xTo(), '"2015-07-13T00:00:00.000Z"' );
+
+    done();
+};
+
+// [use Object.xTo](http://opencrisp.wca.at/docs/external-Object.html#xTo)
+exports['xTo Object'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.equal( { a: "a" }.xTo(), '{"a":"a"}' );
+    assert.equal( {}.xTo(), '{}' );
+
+    done();
+};
+
+// [use Array.xTo](http://opencrisp.wca.at/docs/external-Array.html#xTo)
+exports['xTo Array'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.equal( [ 1, 0 ].xTo(), '[1,0]' );
+    assert.equal( [].xTo(), '[]' );
+
+    done();
+};
+
+// [use RegExp.xTo](http://opencrisp.wca.at/docs/external-RegExp.html#xTo)
+exports['xTo RegExp'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.equal( (/a/g).xTo(), '"/a/g"' );
+    assert.equal( new RegExp("a").xTo(), '"/a/"' );
+
+    done();
+};
+
 
 
 // ## xAdd
@@ -237,6 +230,45 @@ exports['xEach Array async'] = function(assert) {
     assert.equal( count, 0 );
     count += 1;
 };
+
+
+// ## xMath
+// [use Base.math](http://opencrisp.wca.at/docs/module-BaseJS.html#math)
+
+// [use Number.xMath](http://opencrisp.wca.at/docs/external-Number.html#xMath)
+exports['xMath Number'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.equal( (1).xMath('abs'), 1 );
+    assert.equal( (-1).xMath('abs'), 1 );
+    assert.equal( (-0.1).xMath('abs'), 0.1 );
+
+    done();
+};
+
+// [use String.xMath](http://opencrisp.wca.at/docs/external-String.html#xMath)
+exports['xMath String'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.equal( '1'.xMath('abs'), 1 );
+    assert.equal( '-1'.xMath('abs'), 1 );
+    assert.equal( '-0.1'.xMath('abs'), 0.1 );
+
+    done();
+};
+
+
+// ## toURLParam
+// [use Objects.toURLParam](http://opencrisp.wca.at/docs/external-Object.html#toURLParam)
+exports['toURLParam Object'] = function(assert) {
+    var done = assert.done || assert.async();
+
+    assert.equal( { a: 'A' }.toURLParam(), 'a=A' );
+    assert.equal( { a: 'A', b: true }.toURLParam(), 'a=A&b=true' );
+    
+    done();
+};
+
 
 
 // ## escape
