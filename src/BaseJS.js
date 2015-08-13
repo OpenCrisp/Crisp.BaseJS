@@ -330,15 +330,19 @@
          * Crisp.type.call( [] );          // 'Array'
          * Crisp.type.call( /a/g );        // 'RegExp'
          * 
+         * Crisp.type.call( null );        // 'Undefined'
+         * Crisp.type.call( undefined );   // 'Undefined'
+         * 
          * // CHECK the small type name of JavaScript objects
          * Crisp.type.call( '',         'String' );     // true
          * Crisp.type.call( 0,          'Number' );     // true
          * Crisp.type.call( true,       'Boolean' );    // true
          * Crisp.type.call( new Date(), 'Date' );       // true
          * Crisp.type.call( {},         'Object' );     // true
-         * Crisp.type.call( null,       'Object' );     // true
          * Crisp.type.call( [],         'Array' );      // true
          * Crisp.type.call( /a/g,       'RegExp' );     // true
+         * 
+         * Crisp.type.call( null,       'Undefined' );  // true
          * Crisp.type.call( undefined,  'Undefined' );  // true
          * 
          * // CHECH group of object type

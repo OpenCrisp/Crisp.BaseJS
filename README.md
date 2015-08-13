@@ -58,10 +58,10 @@ or use the [OpenCrisp UtilJS](https://github.com/OpenCrisp/Crisp.UtilJS) wraper
 
     $ npm install crisp-util
 
-    ```javascript
-    // use package
-    require("crisp-util");
-    ```
+```javascript
+// use package
+require("crisp-util");
+```
 
 ### Web-Clients
 Use [Bower](http://bower.io/) to install `crisp-base` for Browsers APP's and other front-end workflows.
@@ -191,7 +191,7 @@ Crisp.type.call( {},         'Object' );     // true
 Crisp.type.call( [],         'Array' );      // true
 Crisp.type.call( /a/g,       'RegExp' );     // true
 
-Crisp.type.call( null,       'Undefined' );     // true
+Crisp.type.call( null,       'Undefined' );  // true
 Crisp.type.call( undefined,  'Undefined' );  // true
 
 // CHECK group of object type
@@ -257,28 +257,18 @@ How to use `String().xParse` function on JavaScript.
 Parse the given JSON typed string
 
 ```javascript
-// String
-'"a"'.xParse(); // 'a'
-'"b\\"c"'.xParse(); // 'b"c'
-
-// Number
-'1.5'.xParse(); // 1.5
-
-// Boolean
-'true'.xParse(); // true
-
-// Date
-'"2015-07-13T00:00:00.000Z"'.xParse(); // Date()
-
-// Object
-'{"a":"A"}'.xParse(); // { a: 'A' }
-
-// Array
-'["a"]'.xParse(); // ['a']
+'"a"'.xParse();                         // 'a'          String
+'"b\\"c"'.xParse();                     // 'b"c'        String
+'1.5'.xParse();                         // 1.5          Number
+'true'.xParse();                        // true         Boolean
+'"2015-07-13T00:00:00.000Z"'.xParse();  // Date()       Date
+'{"a":"A"}'.xParse();                   // { a: 'A' }   Object
+'["a"]'.xParse();                       // ['a']        Array
 ```
 
 ### .xAdd()
 How to use `Array().xAdd()` prototype functions on JavaScript.
+
 .xAdd combines the given arguments of an Array and includes all items.
 
 The difference to `[].concat()` is to ignore `undefined` items in Arrays.
