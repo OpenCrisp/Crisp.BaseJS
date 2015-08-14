@@ -12,11 +12,11 @@ Crisp.ns('my.namespace');
 // apply a function with arguments optional asyncronous
 Crisp.utilTick( this, callback, { args: [] }, async );
 
-// return the full JavaScript object name
-Crisp.toType( {} );                         // '[object Object]'
+// return the small JavaScript object name
+Crisp.type.call( {} );                         // 'Object'
 
 // check the JavaScript object type with a smaller name
-Crisp.isType( {}, 'Object' );               // true
+Crisp.type.call( {}, 'Object' );               // true
 ```
 
 ## Index Table
