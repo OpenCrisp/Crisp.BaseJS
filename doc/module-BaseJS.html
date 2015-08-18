@@ -52,19 +52,99 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
+
+    
+        <h3 class="subsection-title">Methods</h3>
 
         
             
-<h4 class="name" id=".isType"><span class="type-signature">(static) </span>isType<span class="type-signature"></span></h4>
+
+    
+
+    <h4 class="name" id=".isType"><span class="type-signature">(static) </span>isType<span class="signature">(object, type)</span><span class="type-signature"></span></h4>
+
+    
 
 
 
 
-<div class="description">
-    check type of object
-</div>
 
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>object</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AnyItem">AnyItem</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="external-String.html">external:String</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -88,83 +168,7 @@
     
 
     
-        <dt class="important tag-deprecated">Deprecated:</dt><dd class="yes-def tag-deprecated"><ul class="dummy"><li>Yes</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line266">line 266</a>
-    </li></ul></dd>
-    
-
-    
-    <dt class="tag-tutorial">Tutorials:</dt>
-    <dd class="tag-tutorial">
-        <ul>
-            <li><em class="disabled">Tutorial: <a href="http://opencrisp.wca.at/tutorials/BaseJS_test.html#istype">use isType</a></em></li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>Crisp.isType("", "String"); // true
-Crisp.isType(0, "Number"); // true
-
-Crisp.isType({}, "String"); // false
-Crisp.isType([], "Number"); // false</code></pre>
-
-
-
-        
-            
-<h4 class="name" id=".toType"><span class="type-signature">(static) </span>toType<span class="type-signature"></span></h4>
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="important tag-deprecated">Deprecated:</dt><dd class="yes-def tag-deprecated"><ul class="dummy"><li>Yes</li></ul></dd>
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>use {module:BaseJS.type}</li></ul></dd>
     
 
     
@@ -183,21 +187,7 @@ Crisp.isType([], "Number"); // false</code></pre>
     
 
     
-    <dt class="tag-tutorial">Tutorials:</dt>
-    <dd class="tag-tutorial">
-        <ul>
-            <li><em class="disabled">Tutorial: <a href="http://opencrisp.wca.at/tutorials/BaseJS_test.html#totype">use toType</a></em></li>
-        </ul>
-    </dd>
-    
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -207,18 +197,16 @@ Crisp.isType([], "Number"); // false</code></pre>
 
 
 
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>Crisp.toType("") // "[object String]"
-Crisp.toType(0) // "[object Number]"</code></pre>
 
 
 
-        
-    
 
-    
-        <h3 class="subsection-title">Methods</h3>
+
+
+
+
+
+
 
         
             
@@ -324,7 +312,7 @@ Crisp.toType(0) // "[object Number]"</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line401">line 401</a>
+        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line385">line 385</a>
     </li></ul></dd>
     
 
@@ -538,7 +526,7 @@ Crisp.toType(0) // "[object Number]"</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line147">line 147</a>
+        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line156">line 156</a>
     </li></ul></dd>
     
 
@@ -718,7 +706,7 @@ Crisp.ns('b', { a: 'A' }); // return reference of b = { a: 'A' }</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line307">line 307</a>
+        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line290">line 290</a>
     </li></ul></dd>
     
 
@@ -840,7 +828,7 @@ Crisp.parse.call('{"a":"A"}'); // { a: 'A' }</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line444">line 444</a>
+        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line428">line 428</a>
     </li></ul></dd>
     
 
@@ -1022,7 +1010,7 @@ Crisp.parse.call('{"a":"A"}'); // { a: 'A' }</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line286">line 286</a>
+        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line268">line 268</a>
     </li></ul></dd>
     
 
@@ -1201,7 +1189,7 @@ Crisp.to.call({ a: 'A' }); // '{"a":"A"}'</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line420">line 420</a>
+        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line404">line 404</a>
     </li></ul></dd>
     
 
@@ -1362,7 +1350,7 @@ Crisp.to.call({ a: 'A' }); // '{"a":"A"}'</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line381">line 381</a>
+        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line365">line 365</a>
     </li></ul></dd>
     
 
@@ -1430,6 +1418,135 @@ Crisp.to.call({ a: 'A' }); // '{"a":"A"}'</code></pre>
 
     
 
+    <h4 class="name" id=".toType"><span class="type-signature">(static) </span>toType<span class="signature">(object)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>object</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AnyItem">AnyItem</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>use {module:BaseJS.type}</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line235">line 235</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id=".type"><span class="type-signature">(static) </span>type<span class="signature">(type<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="external-Boolean.html">external:Boolean</a>|<a href="external-String.html">external:String</a>}</span></h4>
 
     
@@ -1437,7 +1554,7 @@ Crisp.to.call({ a: 'A' }); // '{"a":"A"}'</code></pre>
 
 
 <div class="description">
-    get or check type of object
+    get or check ths small type name of objects
 </div>
 
 
@@ -1545,7 +1662,7 @@ Crisp.to.call({ a: 'A' }); // '{"a":"A"}'</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line355">line 355</a>
+        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line339">line 339</a>
     </li></ul></dd>
     
 
@@ -1966,7 +2083,7 @@ Crisp.type.call(       /a/g, 'field' );  // true</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line211">line 211</a>
+        <a href="BaseJS.js.html">BaseJS.js</a>, <a href="BaseJS.js.html#line220">line 220</a>
     </li></ul></dd>
     
 
@@ -2064,7 +2181,7 @@ console.log('end');
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Thu Aug 13 2015 22:46:35 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 18 2015 21:14:59 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

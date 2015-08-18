@@ -1,7 +1,7 @@
 {
     "name": "crisp-base",
     "main": "dist/crisp-base.js",
-    "version": "0.2.9",
+    "version": "0.2.10",
     "homepage": "http://opencrisp.wca.at",
     "repository": {
         "type": "git",
@@ -17,7 +17,10 @@
     "keywords": [
         "OpenCrisp",
         "async",
-        "namespace"
+        "namespace",
+        "setTimeout",
+        "typeOf",
+        "JSON"
     ],
     "license": "MIT",
     "ignore": [

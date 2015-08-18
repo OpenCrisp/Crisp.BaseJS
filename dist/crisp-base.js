@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.2.9 - 2015-08-13
+/*! OpenCrisp BaseJS - v0.2.9 - 2015-08-18
 * http://opencrisp.wca.at
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 /**
@@ -21,6 +21,15 @@
      */
     var toTypeString = Object.prototype.toString;
 
+    /**
+     * @private
+     * @type {external:RegExp}
+     * @memberOf util
+     *
+     * @example
+     * '[object String]'.replace( regTypeTrim, '$1' ); // 'String'
+     *  toType.call('a').replace( regTypeTrim, '$1' ); // 'String'
+     */
     var regTypeTrim = /^\[object ([a-z]+)\]$/i;
 
 
@@ -220,47 +229,20 @@
 
 
         /**
-         * @deprecated
+         * @deprecated use {module:BaseJS.type}
+         * @function module:BaseJS.toType
          * @param       {AnyItem} object
-         * 
-         * @this        module:BaseJS
-         * @return      {external:String}
-         *
-         * @memberOf    module:BaseJS
-         *
-         * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString
-         * 
-         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#totype|use toType}
-         *
-         * @example
-         * Crisp.toType("") // "[object String]"
-         * Crisp.toType(0) // "[object Number]"
          */
         toType: toType,
 
 
         /**
-         * check type of object
-         * @deprecated
+         * @deprecated use {module:BaseJS.type}
+         * @function module:BaseJS.isType
          * @param       {AnyItem}         object
          * @param       {external:String} type
-         * 
-         * @this        module:BaseJS
-         * @returns     {external:Boolean}
-         *
-         * @memberOf    module:BaseJS
-         *
-         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#istype|use isType}
-         * 
-         * @example
-         * Crisp.isType("", "String"); // true
-         * Crisp.isType(0, "Number"); // true
-         * 
-         * Crisp.isType({}, "String"); // false
-         * Crisp.isType([], "Number"); // false
          */
         isType: isType,
-
 
 
         /**
@@ -284,6 +266,7 @@
             return JSON.stringify( this );
         },
 
+
         /**
          * parse data format
          * 
@@ -305,8 +288,9 @@
             return JSON.parse( this.toString() );
         },
 
+
         /**
-         * get or check type of object
+         * get or check ths small type name of objects
          * @param       {external:String} [type]
          * 
          * @this        module:BaseJS

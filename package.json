@@ -2,7 +2,7 @@
     "name": "crisp-base",
     "title": "OpenCrisp BaseJS",
     "description": "Base OpenCrisp JavaScript functions for Web-Clients and Server-Nodes",
-    "version": "0.2.9",
+    "version": "0.2.10",
     "main": "dist/crisp-base.js",
     "homepage": "http://opencrisp.wca.at",
     "author": {
@@ -46,6 +46,9 @@
     "keywords": [
         "OpenCrisp",
         "async",
-        "namespace"
+        "namespace",
+        "setTimeout",
+        "typeOf",
+        "JSON"
     ]
 }

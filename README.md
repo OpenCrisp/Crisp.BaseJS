@@ -98,7 +98,7 @@ Use [Git](https://git-scm.com/) to clone `Crisp.BaseJS` from [GitHub](https://gi
     $ sh grunt-tests.sh
 
 ## Usage
-How to use Crisp.BaseJS funktion in JavaScript
+How to use `Crisp.BaseJS` funktion in JavaScript
 
 ```javascript
 // global value of Crisp
@@ -111,7 +111,7 @@ var $$ = Crisp;
 ```
 
 ### Crisp.ns()
-How to use `Crisp.ns()` namespaces in JavaScript
+How to use `Crisp.ns( name [, object ])` namespaces in JavaScript
 
 ```javascript
 // GET namespace
@@ -121,8 +121,25 @@ Crisp.ns('a'); // return reference of a = {}
 Crisp.ns('b', { a: 'A' }); // return reference of b = { a: 'A' }
 ```
 
+> #### Why namespaces for OpenCrisp?
+> You can manged youre modules in namespaces an inherit one or more with [`Crisp.utilCreate(option)`](http://opencrisp.wca.at/docs/module-BaseJS.html#.utilCreate) in JavaScript.
+> **Example:** include [Crisp.EventJS](http://opencrisp.wca.at/docs/util.event.html) and [Crisp.PathJS](http://opencrisp.wca.at/docs/util.path.html) with [Crisp.CreateJS](http://opencrisp.wca.at/docs/util.create.html)
+> ```javascript
+> var myObject = Crisp.utilCreate({
+>   ns: ['util.event','util.path']
+> }).objIni();
+> 
+> // now you can use the functions of Crisp.EventJS on your object
+> myObject.eventListener( option );
+> myObject.eventTrigger( option );
+> 
+> // or the functions of Crisp.PathJS
+> myObject.pathFind( option );
+> myObject.pathExists( path );
+> ```
+
 ### Crisp.utilTick()
-How to use `Crisp.utilTick()` in JavaScript
+How to use `Crisp.utilTick( this, callback, options, async=false )` in JavaScript
 
 ```javascript
 // synchronous execution of an anonymous function
@@ -150,24 +167,29 @@ console.log('END');
 // { "a": "A" }
 ```
 
-### Crisp.to()
-How to use `Crisp.to()` in JavaScript
+> #### Why utilTick event loop for OpenCrisp?
+> You have one interface for apply functions one behind the other (sync) or parallel (async). You must only set the default option of `async=false` to `async=true` 
+
+### Crisp.to
+How to use `Crisp.to.call( this )` in JavaScript
 
 ```javascript
 Crisp.to.call('a');         // '"a"'
 Crisp.to.call({ a: 'A' });  // '{"a":"A"}'
 ```
+> [use `.xTo()` on all global JavaScript objects](#user-content-xto)
 
-### Crisp.parse()
-How to use `Crisp.parse()` in JavaScript
+### Crisp.parse
+How to use `Crisp.parse.call( this )` in JavaScript
 
 ```javascript
 Crisp.parse.call('"a"');        // 'a'
 Crisp.parse.call('{"a":"A"}');  // { a: 'A' }
 ```
+> [use `.xParse()` on global JavaScript object `String`](#user-content-xparse)
 
-### Crisp.type()
-How to use `Crisp.type()` in JavaScript
+### Crisp.type
+How to use `Crisp.type.call( this [, name ])` in JavaScript
 
 ```javascript
 // GET the small type name of JavaScript objects
@@ -201,6 +223,7 @@ Crisp.type.call(       true, 'field' );  // true
 Crisp.type.call( new Date(), 'field' );  // true
 Crisp.type.call(       /a/g, 'field' );  // true
 ```
+> [use `.xType()` on all global JavaScript objects](#user-content-xtype)
 
 ### Crisp.math()
 How to use `Crisp.math()` in JavaScript
@@ -208,12 +231,13 @@ How to use `Crisp.math()` in JavaScript
 ```javascript
 Crisp.math.call( -1, 'abs'); // 1
 ```
+> [use `.xMath()` on global JavaScript objects String and Number](#user-content-xmath)
 
 ## Global Object Functions
 
 ### .xType()
-How to use `.xType()` prototype functions on JavaScript objects.
-@implements `Crisp.type`
+How to use `.xType([ name ])` prototype functions on JavaScript objects.
+@implements [`Crisp.type`](#crisptype)
 
 ```javascript
 // GET the small type name of JavaScript objects
@@ -236,8 +260,8 @@ Date().xType( 'Date' );     // true
 ```
 
 ### .xTo()
-How to use `.xTo()` prototype functions on JavaScript objects.
-@implements `Crisp.to` << `JSON.stringify`
+How to use `.xTo()` prototype function on JavaScript objects.
+@implements [`Crisp.to`](#crispto) << `JSON.stringify`
 
 ```javascript
 // GET the JSON string of JavaScript objects
@@ -251,27 +275,23 @@ Date('2015-07-13').xTo();  // '"2015-07-13T00:00:00.000Z"'
 ```
 
 ### .xParse()
-How to use `String().xParse` function on JavaScript.
-@implements `Crisp.parse` << `JSON.parse`
+How to use `String().xParse()` prototype function on JavaScript.
+@implements [`Crisp.parse`](#crispparse) << `JSON.parse`
 
 Parse the given JSON typed string
 
 ```javascript
-'"a"'.xParse();                         // 'a'          String
-'"b\\"c"'.xParse();                     // 'b"c'        String
-'1.5'.xParse();                         // 1.5          Number
-'true'.xParse();                        // true         Boolean
+                       '"a"'.xParse();  // 'a'          String
+                   '"b\\"c"'.xParse();  // 'b"c'        String
+                       '1.5'.xParse();  // 1.5          Number
+                      'true'.xParse();  // true         Boolean
 '"2015-07-13T00:00:00.000Z"'.xParse();  // Date()       Date
-'{"a":"A"}'.xParse();                   // { a: 'A' }   Object
-'["a"]'.xParse();                       // ['a']        Array
+                 '{"a":"A"}'.xParse();  // { a: 'A' }   Object
+                     '["a"]'.xParse();  // ['a']        Array
 ```
 
 ### .xAdd()
-How to use `Array().xAdd()` prototype functions on JavaScript.
-
-.xAdd combines the given arguments of an Array and includes all items.
-
-The difference to `[].concat()` is to ignore `undefined` items in Arrays.
+How to use `Array().xAdd( list [, list ])` prototype functions on JavaScript.
 
 ```javascript
 // standard
@@ -292,9 +312,12 @@ The difference to `[].concat()` is to ignore `undefined` items in Arrays.
 [].xAdd(['a'], [ undefined ]);  // ['a']    
 ```
 
+> #### Why xAdd concatenation for OpenCrisp?
+> `.xAdd()` combines the given arguments of an `Array` and includes all items.
+> The difference to `[].concat()` is to ignore `undefined` items of lists.
+
 ### .xEach()
-How to use `.xEach()` prototype functions on JavaScript objects.
-@implements `Crisp.toMath`
+How to use `.xEach( option )` prototype functions on JavaScript objects.
 
 ```javascript
 // use `throw new Break()` to stop xEach and go to callback.complete
@@ -313,12 +336,13 @@ var Break = Crisp.ns('util.control.Break');
     console.log('Complete');
   }
 });
-console.log('end');
+console.log('End');
+
 // logs:
 // Success: a A
 // Success: b B
 // Complete
-// end
+// End
 ```
 
 ```javascript
@@ -334,9 +358,10 @@ console.log('end');
     console.log('Complete');
   }
 });
-console.log('end');
+console.log('End');
+
 // logs:
-// end
+// End
 // Success: a A
 // Success: b B
 // Complete
@@ -354,12 +379,13 @@ console.log('end');
     console.log('Complete');
   }
 });
-console.log('end');
+console.log('End');
+
 // logs:
 // Success: 0 A
 // Success: 1 B
 // Complete
-// end
+// End
 ```
 
 ```javascript
@@ -375,17 +401,18 @@ console.log('end');
     console.log('Complete');
   }
 });
-console.log('end');
+console.log('End');
+
 // logs:
-// end
+// End
 // Success: 0 A
 // Success: 1 B
 // Complete
 ```
 
 ### .xMath()
-How to use `.xMath()` prototype functions on JavaScript objects.
-@implements `Crisp.math`
+How to use `.xMath( name )` prototype function on JavaScript objects.
+@implements [`Crisp.math`](#crispmath) << [`Math[function name]( args )`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
 ```javascript
 // GET the return of `Math[name].call(this)` function
@@ -398,8 +425,34 @@ How to use `.xMath()` prototype functions on JavaScript objects.
 '-0.1'.xMath('abs');  // 0.1
 ```
 
+> #### Why xMath on global object of `String` and `Number` for OpenCrisp?
+> You can use the function directly in [`Crisp.PathJS`](https://github.com/OpenCrisp/Crisp.PathJS) without external coding.
+> 
+> ```javascript
+> // example with Crisp.PathJS
+> var myObject = [ 20.49, 20.5, 20, 21 ];
+> Crisp.definePath( myObject );
+> 
+> myObject.pathFind({
+>   path: '*( :xMath("round") >= 21 )',
+>   success: function( item ) {
+>     console.log('Success:', item );
+>   },
+>   complete: function( e ) {
+>     console.log('Complete');
+>   }
+> });
+> console.log('End');
+> 
+> // logs:
+> // Success: 20.5
+> // Success: 21
+> // Complete
+> // End
+> ```
+
 ### Number.isInteger()
-How to use ES6 `Number.isInteger()` function on JavaScript.
+How to use ES6 `Number.isInteger( number )` function on JavaScript.
 
 ```javascript
 Number.isInteger(1);   // true
@@ -407,7 +460,7 @@ Number.isInteger(0.5); // false
 ```
 
 ### RegExp.escape()
-How to use `RegExp.escape()` function on JavaScript.
+How to use `RegExp.escape( string )` function on JavaScript.
 
 ```javascript
 RegExp.escape('a.b'); // 'a\\.b'
