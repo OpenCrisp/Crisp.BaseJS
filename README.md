@@ -31,7 +31,7 @@ Crisp.type.call( {}, 'Object' );               // true
     * [Crisp.to](#crispto)
     * [Crisp.parse](#crispparse)
     * [Crisp.math](#crispmath)
-  * [Global Object Functions](#global-object-functions)
+  * [Global object functions](#global-object-functions)
     * [.xType()](#user-content-xtype)
     * [.xTo()](#user-content-xto)
     * [.xParse()](#user-content-xparse)
@@ -83,7 +83,7 @@ or use the [OpenCrisp UtilJS](https://github.com/OpenCrisp/Crisp.UtilJS) wraper
 ```
 
 ## Development
-Use [Git](https://git-scm.com/) to clone `Crisp.BaseJS` from [GitHub](https://github.com/OpenCrisp/Crisp.BaseJS) to develop the repository with [Grunt](http://gruntjs.com/)
+Use [Git](https://git-scm.com/) to clone [Crisp.BaseJS from GitHub](https://github.com/OpenCrisp/Crisp.BaseJS) to develop the repository with [Grunt](http://gruntjs.com/)
 
     # Clone:
     $ git clone https://github.com/OpenCrisp/Crisp.BaseJS.git
@@ -98,7 +98,7 @@ Use [Git](https://git-scm.com/) to clone `Crisp.BaseJS` from [GitHub](https://gi
     $ sh grunt-tests.sh
 
 ## Usage
-How to use `Crisp.BaseJS` funktion in JavaScript
+How to use `Crisp.BaseJS` function in JavaScript
 
 ```javascript
 // global value of Crisp
@@ -233,7 +233,7 @@ Crisp.math.call( -1, 'abs'); // 1
 ```
 > [use `.xMath()` on global JavaScript objects String and Number](#user-content-xmath)
 
-## Global Object Functions
+## Global object functions
 
 ### .xType()
 How to use `.xType([ name ])` prototype functions on JavaScript objects.
@@ -468,8 +468,9 @@ RegExp.escape('a.b'); // 'a\\.b'
 
 
 ## Links
- * [Online Crisp.BaseJS module documentation](http://opencrisp.wca.at/docs/module-BaseJS.html)
- * [More examples on opencrisp.wca.at](http://opencrisp.wca.at/tutorials/BaseJS_test.html)
- * [Repository on GitHub.com](https://github.com/OpenCrisp/Crisp.BaseJS)
- * [npm package on npm.com](https://www.npmjs.com/package/crisp-base)
- * [Build history on Travis-ci.org](https://travis-ci.org/OpenCrisp/Crisp.BaseJS)
+ * [Repository](https://github.com/OpenCrisp/Crisp.BaseJS)
+ * [More examples](http://opencrisp.wca.at/tutorials/BaseJS_test.html)
+ * [Module documentation](http://opencrisp.wca.at/docs/module-BaseJS.html)
+ * [Node package manager](https://www.npmjs.com/package/crisp-base)
+ * [Version monitoring](https://www.versioneye.com/nodejs/crisp-base)
+ * [Build history](https://travis-ci.org/OpenCrisp/Crisp.BaseJS)

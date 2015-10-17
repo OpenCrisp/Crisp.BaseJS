@@ -1,5 +1,5 @@
-/*! OpenCrisp BaseJS - v0.2.9 - 2015-08-18
-* http://opencrisp.wca.at
+/*! OpenCrisp BaseJS - v0.2.11 - 2015-10-17
+* https://github.com/OpenCrisp/Crisp.BaseJS
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 /**
  * Basic Crisp functions
