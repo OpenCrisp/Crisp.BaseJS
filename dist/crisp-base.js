@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.2.11 - 2015-10-30
+/*! OpenCrisp BaseJS - v0.2.13 - 2015-10-30
 * https://github.com/OpenCrisp/Crisp.BaseJS
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 /**
@@ -482,7 +482,7 @@
 (function($$) {
 
     var Break = $$.ns('util.control.Break');
-    // var End = $$.ns('util.control.End');
+    var End = $$.ns('util.control.End');
 
     
     /**
@@ -628,7 +628,10 @@
                 if ( e instanceof Break ) {
                     i -= 1;
                     start -= 1;
-                } 
+                }
+                else if ( e instanceof End ) {
+                    return this;
+                }
                 else {
                     throw e;
                 }
@@ -797,7 +800,7 @@
 (function($$) {
 
     var Break = $$.ns('util.control.Break');
-    // var End = $$.ns('util.control.End');
+    var End = $$.ns('util.control.End');
 
 
     /**
@@ -897,7 +900,10 @@
                 if ( e instanceof Break ) {
                     i -= 1;
                     start -= 1;
-                } 
+                }
+                else if ( e instanceof End ) {
+                    return this;
+                }
                 else {
                     throw e;
                 }
