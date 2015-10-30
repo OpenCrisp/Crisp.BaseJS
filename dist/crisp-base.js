@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.2.13 - 2015-10-30
+/*! OpenCrisp BaseJS - v0.3.0 - 2015-10-31
 * https://github.com/OpenCrisp/Crisp.BaseJS
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 /**
@@ -599,10 +599,14 @@
      * // complete
      */
     function xEachArray( option ) {
-        var i = 0,
+        var index,
+        
+            i = 0,
+            reverse = 1,
             length = this.length,
             start = option.start ? Number( option.start ) : 0,
             limit = option.limit === undefined ? length : Number( option.limit );
+
         
         if ( limit <= 0 ) {
             limit = length;
@@ -621,15 +625,23 @@
             limit = length;
         }
 
+        if ( option.reverse ) {
+            reverse = -1;
+            start -= length + reverse;
+        }
+
         for (; i<limit; i+=1 ) {
             try {
-               option.success.call( option.self, this[ i + start ], i + start );
+                index = ( i + start ) * reverse;
+
+                option.success.call( option.self, this[ index ], index );
             } catch (e) {
                 if ( e instanceof Break ) {
-                    i -= 1;
-                    start -= 1;
+                    if ( option.reverse && option.limit ) {
+                        limit += 1;
+                    }
                 }
-                else if ( e instanceof End ) {
+                else if ( e instanceof End || index < 0 ) {
                     return this;
                 }
                 else {
@@ -868,8 +880,10 @@
      * // complete
      */
     function xEachObject( option ) {
-        var keys = Object.keys( this ),
+        var index,
+            keys = Object.keys( this ),
             i = 0,
+            reverse = 1,
             length = keys.length,
             start = option.start ? Number( option.start ) : 0,
             limit = option.limit === undefined ? length : Number( option.limit ),
@@ -892,16 +906,23 @@
             limit = length;
         }
 
+        if ( option.reverse ) {
+            reverse = -1;
+            start -= length + reverse;
+        }
+
         for (; i<limit; i+=1 ) {
             try {
-                name = keys[ i + start ];
+                index = ( i + start ) * reverse;
+                name = keys[ index ];
                 option.success.call( option.self, this[ name ], name );
             } catch (e) {
                 if ( e instanceof Break ) {
-                    i -= 1;
-                    start -= 1;
+                    if ( option.reverse && option.limit ) {
+                        limit += 1;
+                    }
                 }
-                else if ( e instanceof End ) {
+                else if ( e instanceof End || index < 0 ) {
                     return this;
                 }
                 else {

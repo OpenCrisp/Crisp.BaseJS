@@ -75,8 +75,10 @@
      * // complete
      */
     function xEachObject( option ) {
-        var keys = Object.keys( this ),
+        var index,
+            keys = Object.keys( this ),
             i = 0,
+            reverse = 1,
             length = keys.length,
             start = option.start ? Number( option.start ) : 0,
             limit = option.limit === undefined ? length : Number( option.limit ),
@@ -99,16 +101,23 @@
             limit = length;
         }
 
+        if ( option.reverse ) {
+            reverse = -1;
+            start -= length + reverse;
+        }
+
         for (; i<limit; i+=1 ) {
             try {
-                name = keys[ i + start ];
+                index = ( i + start ) * reverse;
+                name = keys[ index ];
                 option.success.call( option.self, this[ name ], name );
             } catch (e) {
                 if ( e instanceof Break ) {
-                    i -= 1;
-                    start -= 1;
+                    if ( option.reverse && option.limit ) {
+                        limit += 1;
+                    }
                 }
-                else if ( e instanceof End ) {
+                else if ( e instanceof End || index < 0 ) {
                     return this;
                 }
                 else {
