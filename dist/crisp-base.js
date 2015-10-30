@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.2.11 - 2015-10-17
+/*! OpenCrisp BaseJS - v0.2.11 - 2015-10-30
 * https://github.com/OpenCrisp/Crisp.BaseJS
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 /**
@@ -621,13 +621,19 @@
             limit = length;
         }
 
-        try {
-            
-            for (; i<limit; i+=1 ) {
-                option.success.call( option.self, this[ i + start ], i + start );
+        for (; i<limit; i+=1 ) {
+            try {
+               option.success.call( option.self, this[ i + start ], i + start );
+            } catch (e) {
+                if ( e instanceof Break ) {
+                    i -= 1;
+                    start -= 1;
+                } 
+                else {
+                    throw e;
+                }
             }
-
-        } catch (e) { if ( e instanceof Break ) {} else { throw e; } }
+        }
         
         return this;
     }
@@ -883,14 +889,20 @@
             limit = length;
         }
 
-        try {
-
-            for (; i<limit; i+=1 ) {
+        for (; i<limit; i+=1 ) {
+            try {
                 name = keys[ i + start ];
                 option.success.call( option.self, this[ name ], name );
+            } catch (e) {
+                if ( e instanceof Break ) {
+                    i -= 1;
+                    start -= 1;
+                } 
+                else {
+                    throw e;
+                }
             }
-
-        } catch (e) { if ( e instanceof Break ) {} else { throw e; } }
+        }
         
         return this;
     }
