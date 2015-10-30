@@ -99,14 +99,20 @@
             limit = length;
         }
 
-        try {
-
-            for (; i<limit; i+=1 ) {
+        for (; i<limit; i+=1 ) {
+            try {
                 name = keys[ i + start ];
                 option.success.call( option.self, this[ name ], name );
+            } catch (e) {
+                if ( e instanceof Break ) {
+                    i -= 1;
+                    start -= 1;
+                } 
+                else {
+                    throw e;
+                }
             }
-
-        } catch (e) { if ( e instanceof Break ) {} else { throw e; } }
+        }
         
         return this;
     }
