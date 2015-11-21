@@ -1,4 +1,24 @@
 
+exports['nextTick'] = function(assert) {
+    var done = assert.done || assert.async();
+    assert.expect(3);
+
+    var count = 0;
+
+    function demo( a ) {
+        assert.strictEqual( a, 'A' );
+        assert.strictEqual( ++count, 2 );
+        done();
+    }
+
+    Crisp.nextTick( demo, 'A' );
+
+    assert.strictEqual( ++count, 1 );
+};
+
+
+
+
 // ## xType
 // [use BaseJS.type](http://opencrisp.wca.at/docs/module-BaseJS.html#type)
 

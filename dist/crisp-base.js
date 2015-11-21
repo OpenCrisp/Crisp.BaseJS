@@ -498,17 +498,17 @@
      * @param  {*}
      */
     var nextTick = (function() {
-        if (typeof process === 'object' && typeof process.nextTick === 'function') {
-            return process.nextTick;
-        }
-        else if (typeof setImmediate === 'function') {
-            return setImmediate;
-        }
-        else {
+        // if (typeof process === 'object' && typeof process.nextTick === 'function') {
+        //     return process.nextTick;
+        // }
+        // else if (typeof setImmediate === 'function') {
+        //     return setImmediate;
+        // }
+        // else {
             return function(fn) {
                 return setTimeout.apply(null, [fn, 0].concat( Array.prototype.slice.call(arguments).slice(1) ));
             };
-        }
+        // }
     })();
 
     $$.nextTick = nextTick;

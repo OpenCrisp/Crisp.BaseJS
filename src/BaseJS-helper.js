@@ -21,6 +21,7 @@
         }
         else {
             return function(fn) {
+                console.log('setTimeout');
                 return setTimeout.apply(null, [fn, 0].concat( Array.prototype.slice.call(arguments).slice(1) ));
             };
         }
