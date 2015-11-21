@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: External: Array</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">External: Array</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        Array
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="global-Array.js.html">global-Array.js</a>, <a href="global-Array.js.html#line2">line 2</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="xAdd"><span class="type-signature"></span>xAdd<span class="signature">(&hellip;item)</span><span class="type-signature"> &rarr; {module:EventJS}</span></h4>
+
+    
+
+
+
+<div class="description">
+    add one or more items/arrays for concat in Array.
+empty Arrays and undefined items are ignored
+</div>
+
+
+
+
+
+
+
+    <h5>This:</h5>
+    <ul><li>module:EventJS</li></ul>
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AnyItem">AnyItem</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">one or more of args</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="global-Array.js.html">global-Array.js</a>, <a href="global-Array.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">module:EventJS</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// standard
+[].xAdd('a'); // ['a']
+[].xAdd( 'a', 'b' ); // ['a','b']
+[].xAdd([ 'a', 'b' ]); // ['a','b']
+[].xAdd(['a'], ['b']); // ['a','b']
+
+// empty items
+[].xAdd(); // []
+[].xAdd([]); // []
+[].xAdd(['a'], []); // ['a']
+
+// undefined items
+[].xAdd( undefined ); // []
+[].xAdd( undefined, 'b' ); // ['b']
+[].xAdd([ 'a', undefined ]); // ['a']
+[].xAdd(['a'], [ undefined ]); // ['a']</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="xEach"><span class="type-signature"></span>xEach<span class="signature">(option)</span><span class="type-signature"> &rarr; {<a href="external-Array.html">external:Array</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    call of each Array items with <a href="module-BaseJS.html#.utilTick"><code>(async) Crisp.utilTick</code></a>
+and execute <code>option.success</code> and/or <code>option.complete</code> with <a href="module-BaseJS.html#.utilTick"><code>(async) Crisp.utilTick</code></a>
+</div>
+
+
+
+
+
+
+
+    <h5>This:</h5>
+    <ul><li><a href="external-Array.html">external:Array</a></li></ul>
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>option</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="external-Object.html">external:Object</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>success</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="util.html#.utilTickCallback">util.utilTickCallback</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">callback function for execute each item with <a href="module-BaseJS.html#.utilTick"><code>(async) Crisp.utilTick</code></a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>self</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AnyItem">AnyItem</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">use Object for .call() the <code>option.success</code> an <code>option.complete</code> function</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>complete</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="util.html#.utilTickCallback">util.utilTickCallback</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">callback function for exeute on the end of xEach with <a href="module-BaseJS.html#.utilTick"><code>(async) Crisp.utilTick</code></a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>async</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="external-Boolean.html">external:Boolean</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">enable asynchronus for call of each Array items with <a href="module-BaseJS.html#.utilTick"><code>(async) Crisp.utilTick</code></a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>start</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="external-Number.html">external:Number</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">start index of each</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>limit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="external-Number.html">external:Number</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    length
+                
+                </td>
+            
+
+            <td class="description last">limit items of each</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="global-Array.js.html">global-Array.js</a>, <a href="global-Array.js.html#line67">line 67</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-tutorial">Tutorials:</dt>
+    <dd class="tag-tutorial">
+        <ul>
+            <li><em class="disabled">Tutorial: <a href="http://opencrisp.wca.at/tutorials/BaseJS-xEach_test.html#array">use Array.xEach</a></em></li>
+        
+            <li><em class="disabled">Tutorial: <a href="http://opencrisp.wca.at/tutorials/BaseJS-xEach_test.html#array-option-start">use Array.xEach( start )</a></em></li>
+        
+            <li><em class="disabled">Tutorial: <a href="http://opencrisp.wca.at/tutorials/BaseJS-xEach_test.html#array-option-limit">use Array.xEach( limit )</a></em></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="external-Array.html">external:Array</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>['A','B'].xEach({
+  success: function( item, index ) {
+    // return; go to the next item 
+    // throw new Break(); stop each of items
+    console.log('success:', index, item );
+  },
+  complete: function() {
+    console.log('complete');
+  }
+});
+console.log('end');
+// logs:
+// success: 0 A
+// success: 1 B
+// complete
+// end</code></pre>
+
+    <pre class="prettyprint"><code>// async
+['A','B'].xEach({
+  async: true,
+  success: function( item, index ) {
+    // return; go to the next item 
+    // throw new Break(); stop each of items
+    console.log('success:', index, item );
+  },
+  complete: function() {
+    console.log('complete');
+  }
+});
+console.log('end');
+// logs:
+// end
+// success: 0 A
+// success: 1 B
+// complete</code></pre>
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BaseJS.html">BaseJS</a></li></ul><h3>Externals</h3><ul><li><a href="external-Array.html">Array</a></li><li><a href="external-Boolean.html">Boolean</a></li><li><a href="external-Date.html">Date</a></li><li><a href="external-Number.html">Number</a></li><li><a href="external-Object.html">Object</a></li><li><a href="external-RegExp.html">RegExp</a></li><li><a href="external-String.html">String</a></li></ul><h3>Namespaces</h3><ul><li><a href="util.html">util</a></li><li><a href="util.control.html">control</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Crisp">Crisp</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Sat Nov 21 2015 15:03:49 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
