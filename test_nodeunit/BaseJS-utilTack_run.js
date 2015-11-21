@@ -11,4 +11,4 @@ require("../src/global-Object");
 require("../src/global-RegExp");
 require("../src/global-String");
 
-module.exports = require("../test_/BaseJS-Objects_test.js");
+module.exports = require("../test_/BaseJS-utilTack_test.js");

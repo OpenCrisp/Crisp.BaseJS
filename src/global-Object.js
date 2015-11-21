@@ -8,6 +8,7 @@
 
     var Break = $$.ns('util.control.Break');
     var End = $$.ns('util.control.End');
+    var utilTack = $$.utilTack;
 
 
     /**
@@ -74,7 +75,7 @@
      * // success: b B
      * // complete
      */
-    function xEachObject( option ) {
+    function xEachObject( option, success, picker ) {
         var index,
             keys = Object.keys( this ),
             i = 0,
@@ -110,7 +111,7 @@
             try {
                 index = ( i + start ) * reverse;
                 name = keys[ index ];
-                option.success.call( option.self, this[ name ], name );
+                success.call( option.self, this[ name ], name, picker );
             } catch (e) {
                 if ( e instanceof Break ) {
                     if ( option.reverse && option.limit ) {
@@ -129,10 +130,10 @@
         return this;
     }
 
+    $$.xEachObject = xEachObject;
+
     Object.defineProperty( Object.prototype, 'xEach', {
-        value: function( option ) {
-            return $$.utilTick( this, xEachObject, option, option.async );
-        }
+        value: utilTack( xEachObject )
     });
 
 

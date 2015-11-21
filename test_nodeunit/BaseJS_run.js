@@ -2,6 +2,7 @@
 
 require("../src/BaseJS");
 require("../src/BaseJS-control");
+require("../src/BaseJS-helper");
 require("../src/global-Array");
 require("../src/global-Boolean");
 require("../src/global-Date");

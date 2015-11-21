@@ -10,19 +10,20 @@ exports['xEach Array'] = function(assert) {
     assert.expect(5);
 
     var a = ['A'];
-    a.xEach({
-        success: function( item, index ) {
+    a.xEach(
+        {},
+        function success( item, index ) {
             assert.equal( count, 0 );
             count += 1;
 
             assert.equal( item, 'A' );
             assert.equal( index, 0 );
         },
-        complete: function() {
+        function complete() {
             assert.equal( count, 1 );
             count += 1;
         }
-    });
+    );
     
     assert.equal( count, 2 );
     count += 1;

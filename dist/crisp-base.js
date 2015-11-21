@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.3.0 - 2015-10-31
+/*! OpenCrisp BaseJS - v0.5.0 - 2015-11-21
 * https://github.com/OpenCrisp/Crisp.BaseJS
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 /**
@@ -50,6 +50,7 @@
 
     /**
      * @private
+     * @deprecated 
      * 
      * @param       {util.utilTickCallback}  callback
      * @param       {AnyItem}                opt
@@ -179,6 +180,8 @@
         /**
          * execute function with (async) {@link util.utilTickCall}
          * 
+         * @deprecated change to {@linkcode module:BaseJS.utilTack|Crisp.utilTack( opt, success, complete )}
+         * 
          * @param       {external:Object}         [self=opt.self] alternate of opt.self and return param
          * @param       {util.utilTickCallback}   callback        Function for apply
          * @param       {external:Object}         [opt]           Options for apply
@@ -217,8 +220,14 @@
             opt = opt || {};
             self = self || opt.self;
 
+            if ( opt.async ) {
+                async = true;
+                delete opt.async;
+            }
+
             if ( async ) {
-                setTimeout( utilTickCall, 0, callback, self, opt );
+                g.Crisp.nextTick( utilTickCall, callback, self, opt );
+                return self;
             }
             else {
                 utilTickCall( callback, self, opt );
@@ -482,7 +491,104 @@
 (function($$) {
 
     var Break = $$.ns('util.control.Break');
+
+    /**
+     * nextTick
+     * @param  {external.Function}
+     * @param  {*}
+     */
+    var nextTick = (function() {
+        if (typeof process === 'object' && typeof process.nextTick === 'function') {
+            return process.nextTick;
+        }
+        else if (typeof setImmediate === 'function') {
+            return setImmediate;
+        }
+        else {
+            return function(fn) {
+                return setTimeout.apply(null, [fn, 0].concat( Array.prototype.slice.call(arguments).slice(1) ));
+            };
+        }
+    })();
+
+    $$.nextTick = nextTick;
+
+
+    function nextTickTackDefault( methodCallback, self, opt, success, complete ) {
+        methodCallback.call( self, opt, success );
+        complete.call( self, opt );
+    }
+
+    /**
+     * [utilTack description]
+     * @param  {external.Function} methodCallback [description]
+     * @param  {external.Array}    methodSchema   [description]
+     * @return {external.Function}                [description]
+     */
+    function utilTack( methodCallback, methodSchema ) {
+        function tackDefault( opt, success, complete ) {
+            var async;
+
+            if ( opt.async ) {
+                async = opt.async;
+                delete opt.async;
+            }
+
+            // reverse compatibility
+            success = success || opt.success || Break;
+            complete = complete || opt.complete || Break;
+
+            if ( async ) {
+                nextTick( nextTickTackDefault, methodCallback, this, opt, success, complete );
+            }
+            else {
+                methodCallback.call( this, opt, success );
+                complete.call( this, opt );
+            }
+            
+            return this;
+        }
+
+        return Object.defineProperty( tackDefault, 'tick', { value: methodSchema || true });
+    }
+
+    $$.utilTack = utilTack;
+
+
+    /**
+     * [callSchema description]
+     * @param  {external.Array} schema [description]
+     * @param  {external.Arguments} args   [description]
+     * @return {external.Object}        [description]
+     */
+    function callSchema( schema, args ) {
+        var key;
+        var opt = {};
+
+        if (Crisp.type.call(args[0], 'Object')) {
+            return args[0];
+        }
+
+        schema = schema || [];
+
+        for (var i=0, m=args.length; i<m; i+=1 ) {
+            key = schema[i] || i;
+            opt[key] = args[i];
+        }
+
+        return opt;
+    }
+
+    $$.callSchema = callSchema;
+
+
+})(Crisp);
+
+(function($$) {
+
+    var Break = $$.ns('util.control.Break');
     var End = $$.ns('util.control.End');
+    var utilTack = $$.utilTack;
 
     
     /**
@@ -598,7 +704,7 @@
      * // success: 1 B
      * // complete
      */
-    function xEachArray( option ) {
+    function xEachArray( option, success, picker ) {
         var index,
         
             i = 0,
@@ -634,7 +740,7 @@
             try {
                 index = ( i + start ) * reverse;
 
-                option.success.call( option.self, this[ index ], index );
+                success.call( option.self, this[ index ], index, picker );
             } catch (e) {
                 if ( e instanceof Break ) {
                     if ( option.reverse && option.limit ) {
@@ -653,28 +759,11 @@
         return this;
     }
 
+    $$.xEachArray = xEachArray;
+
     Object.defineProperty( Array.prototype, 'xEach', {
-        value: function( option ) {
-            return $$.utilTick( this, xEachArray, option, option.async );
-        }
+        value: utilTack( xEachArray )
     });
-
-
-    /**
-     * @function external:Array.prototype.xTo
-     * @implements {module:BaseJS.to}
-     * 
-     * @param {external:String} [type="json"]
-     * 
-     * @this external:Array
-     * @return {external:String}
-     *
-     * @example
-     * ['a'].xTo(); // '["a"]'
-     */
-    // Object.defineProperty( Array.prototype, 'xTo', {
-    //     value: $$.to
-    // });
 
 })(Crisp);
 
@@ -813,6 +902,7 @@
 
     var Break = $$.ns('util.control.Break');
     var End = $$.ns('util.control.End');
+    var utilTack = $$.utilTack;
 
 
     /**
@@ -879,7 +969,7 @@
      * // success: b B
      * // complete
      */
-    function xEachObject( option ) {
+    function xEachObject( option, success, picker ) {
         var index,
             keys = Object.keys( this ),
             i = 0,
@@ -915,7 +1005,7 @@
             try {
                 index = ( i + start ) * reverse;
                 name = keys[ index ];
-                option.success.call( option.self, this[ name ], name );
+                success.call( option.self, this[ name ], name, picker );
             } catch (e) {
                 if ( e instanceof Break ) {
                     if ( option.reverse && option.limit ) {
@@ -934,10 +1024,10 @@
         return this;
     }
 
+    $$.xEachObject = xEachObject;
+
     Object.defineProperty( Object.prototype, 'xEach', {
-        value: function( option ) {
-            return $$.utilTick( this, xEachObject, option, option.async );
-        }
+        value: utilTack( xEachObject )
     });
 
 

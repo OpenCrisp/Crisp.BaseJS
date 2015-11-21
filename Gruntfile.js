@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				src: [
-					['src/BaseJS.js','src/BaseJS-control.js','src/global-*.js']
+					['src/BaseJS.js','src/BaseJS-control.js','src/BaseJS-helper.js','src/global-*.js']
 				],
 				dest: 'dist/<%= pkg.name %>.js'
 			},

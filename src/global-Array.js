@@ -8,6 +8,7 @@
 
     var Break = $$.ns('util.control.Break');
     var End = $$.ns('util.control.End');
+    var utilTack = $$.utilTack;
 
     
     /**
@@ -123,7 +124,7 @@
      * // success: 1 B
      * // complete
      */
-    function xEachArray( option ) {
+    function xEachArray( option, success, picker ) {
         var index,
         
             i = 0,
@@ -159,7 +160,7 @@
             try {
                 index = ( i + start ) * reverse;
 
-                option.success.call( option.self, this[ index ], index );
+                success.call( option.self, this[ index ], index, picker );
             } catch (e) {
                 if ( e instanceof Break ) {
                     if ( option.reverse && option.limit ) {
@@ -178,27 +179,10 @@
         return this;
     }
 
+    $$.xEachArray = xEachArray;
+
     Object.defineProperty( Array.prototype, 'xEach', {
-        value: function( option ) {
-            return $$.utilTick( this, xEachArray, option, option.async );
-        }
+        value: utilTack( xEachArray )
     });
-
-
-    /**
-     * @function external:Array.prototype.xTo
-     * @implements {module:BaseJS.to}
-     * 
-     * @param {external:String} [type="json"]
-     * 
-     * @this external:Array
-     * @return {external:String}
-     *
-     * @example
-     * ['a'].xTo(); // '["a"]'
-     */
-    // Object.defineProperty( Array.prototype, 'xTo', {
-    //     value: $$.to
-    // });
 
 })(Crisp);

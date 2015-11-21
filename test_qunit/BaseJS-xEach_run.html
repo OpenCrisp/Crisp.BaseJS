@@ -11,6 +11,7 @@
   <script src="../libs/qunit/qunit-1.18.0.js"></script>
   <script src="../src/BaseJS.js"></script>
   <script src="../src/BaseJS-control.js"></script>
+  <script src="../src/BaseJS-helper.js"></script>
   <script src="../src/global-Array.js"></script>
   <script src="../src/global-Boolean.js"></script>
   <script src="../src/global-Date.js"></script>

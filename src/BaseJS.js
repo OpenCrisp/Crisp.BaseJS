@@ -54,6 +54,7 @@
 
     /**
      * @private
+     * @deprecated 
      * 
      * @param       {util.utilTickCallback}  callback
      * @param       {AnyItem}                opt
@@ -183,6 +184,8 @@
         /**
          * execute function with (async) {@link util.utilTickCall}
          * 
+         * @deprecated change to {@linkcode module:BaseJS.utilTack|Crisp.utilTack( opt, success, complete )}
+         * 
          * @param       {external:Object}         [self=opt.self] alternate of opt.self and return param
          * @param       {util.utilTickCallback}   callback        Function for apply
          * @param       {external:Object}         [opt]           Options for apply
@@ -221,8 +224,14 @@
             opt = opt || {};
             self = self || opt.self;
 
+            if ( opt.async ) {
+                async = true;
+                delete opt.async;
+            }
+
             if ( async ) {
-                setTimeout( utilTickCall, 0, callback, self, opt );
+                g.Crisp.nextTick( utilTickCall, callback, self, opt );
+                return self;
             }
             else {
                 utilTickCall( callback, self, opt );

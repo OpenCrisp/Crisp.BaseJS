@@ -12,6 +12,8 @@ exports['xType Array'] = function(assert) {
     done();
 };
 
+
+
 // [use Boolean.xType](http://opencrisp.wca.at/docs/external-Boolean.html#xType)
 exports['xType Boolean'] = function(assert) {
     var done = assert.done || assert.async();
