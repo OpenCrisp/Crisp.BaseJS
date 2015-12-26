@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.5.0 - 2015-11-21
+/*! OpenCrisp BaseJS - v0.5.1 - 2015-12-26
 * https://github.com/OpenCrisp/Crisp.BaseJS
 * Copyright (c) 2015 Fabian Schmid; Licensed MIT */
 /**
@@ -498,17 +498,17 @@
      * @param  {*}
      */
     var nextTick = (function() {
-        // if (typeof process === 'object' && typeof process.nextTick === 'function') {
-        //     return process.nextTick;
-        // }
-        // else if (typeof setImmediate === 'function') {
-        //     return setImmediate;
-        // }
-        // else {
+        if (typeof process === 'object' && typeof process.nextTick === 'function') {
+            return process.nextTick;
+        }
+        else if (typeof setImmediate === 'function') {
+            return setImmediate;
+        }
+        else {
             return function(fn) {
                 return setTimeout.apply(null, [fn, 0].concat( Array.prototype.slice.call(arguments).slice(1) ));
             };
-        // }
+        }
     })();
 
     $$.nextTick = nextTick;
@@ -549,7 +549,10 @@
             return this;
         }
 
-        return Object.defineProperty( tackDefault, 'tick', { value: methodSchema || true });
+        Object.defineProperty( tackDefault, 'tick', { value: methodSchema || true });
+        Object.defineProperty( tackDefault, 'callback', { value: methodCallback });
+
+        return tackDefault;
     }
 
     $$.utilTack = utilTack;

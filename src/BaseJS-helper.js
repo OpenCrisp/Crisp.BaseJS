@@ -21,7 +21,6 @@
         }
         else {
             return function(fn) {
-                console.log('setTimeout');
                 return setTimeout.apply(null, [fn, 0].concat( Array.prototype.slice.call(arguments).slice(1) ));
             };
         }
@@ -65,7 +64,10 @@
             return this;
         }
 
-        return Object.defineProperty( tackDefault, 'tick', { value: methodSchema || true });
+        Object.defineProperty( tackDefault, 'tick', { value: methodSchema || true });
+        Object.defineProperty( tackDefault, 'callback', { value: methodCallback });
+
+        return tackDefault;
     }
 
     $$.utilTack = utilTack;
