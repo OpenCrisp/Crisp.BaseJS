@@ -2,7 +2,7 @@
     "name": "crisp-base",
     "title": "OpenCrisp BaseJS",
     "description": "Base OpenCrisp JavaScript functions for Web-Clients and Server-Nodes",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "main": "./dist/crisp-base.js",
     "homepage": "https://github.com/OpenCrisp/Crisp.BaseJS",
     "author": {
