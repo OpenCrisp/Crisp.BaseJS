@@ -249,3 +249,12 @@ exports['math'] = function(assert) {
 
     done();
 };
+
+exports['math round10'] = function(assert) {
+    var done = assert.done || assert.async();
+    
+    var b = Number(55.55);
+    assert.strictEqual( Crisp.math.call( b, 'round10', -1 ), 55.6 );
+
+    done();
+};
