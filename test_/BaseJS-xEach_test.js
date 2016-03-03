@@ -170,148 +170,6 @@ exports['xEach Array start=-1'] = function(assert) {
     done();
 };
 
-// ### Array option.limit
-exports['xEach Array limit=1'] = function(assert) {
-    var done = assert.done || assert.async();
-    var count = 0;
-    assert.expect(5);
-
-    var a = ['A','B'];
-    a.xEach({
-        limit: 1,
-        success: function( item, index ) {
-            assert.equal( count, 0 );
-            count += 1;
-
-            assert.equal( item, 'A' );
-            assert.equal( index, 0 );
-        },
-        complete: function() {
-            assert.equal( count, 1 );
-            count += 1;
-        }
-    });
-    
-    assert.equal( count, 2 );
-    count += 1;
-
-    done();
-};
-
-exports['xEach Array start=1, limit=1'] = function(assert) {
-    var done = assert.done || assert.async();
-    var count = 0;
-    assert.expect(5);
-
-    var a = ['A','B','C'];
-    a.xEach({
-        start: 1,
-        limit: 1,
-        success: function( item, index ) {
-            assert.equal( count, 0 );
-            count += 1;
-
-            assert.equal( item, 'B' );
-            assert.equal( index, 1 );
-        },
-        complete: function() {
-            assert.equal( count, 1 );
-            count += 1;
-        }
-    });
-    
-    assert.equal( count, 2 );
-    count += 1;
-
-    done();
-};
-
-exports['xEach Array start=1, limit=1 Break empty'] = function(assert) {
-    var done = assert.done || assert.async();
-    var count = 0;
-    assert.expect(2);
-
-    var a = ['A','B'];
-    a.xEach({
-        start: 1,
-        limit: 1,
-        success: function() {
-            count += 1;
-
-            if ( count===1 ) {
-                throw new Break();
-            }
-
-            throw new Error();
-        },
-        complete: function() {
-            assert.equal( count, 1 );
-            count += 1;
-        }
-    });
-    
-    assert.equal( count, 2 );
-    count += 1;
-
-    done();
-};
-
-exports['xEach Array start=2, limit=10'] = function(assert) {
-    var done = assert.done || assert.async();
-    var count = 0;
-    assert.expect(5);
-
-    var a = ['A','B','C'];
-    a.xEach({
-        start: 2,
-        limit: 10,
-        success: function( item, index ) {
-            assert.equal( count, 0 );
-            count += 1;
-
-            assert.equal( item, 'C' );
-            assert.equal( index, 2 );
-        },
-        complete: function() {
-            assert.equal( count, 1 );
-            count += 1;
-        }
-    });
-    
-    assert.equal( count, 2 );
-    count += 1;
-
-    done();
-};
-
-exports['xEach Array start=-10, limit=10'] = function(assert) {
-    var done = assert.done || assert.async();
-    var count = 0;
-    assert.expect(5);
-
-    var a = ['A'];
-    a.xEach({
-        start: -10,
-        limit: 10,
-        success: function( item, index ) {
-            assert.equal( count, 0 );
-            count += 1;
-
-            assert.equal( item, 'A' );
-            assert.equal( index, 0 );
-        },
-        complete: function() {
-            assert.equal( count, 1 );
-            count += 1;
-        }
-    });
-    
-    assert.equal( count, 2 );
-    count += 1;
-
-    done();
-};
-
 exports['xEach Array reverse=true'] = function(assert) {
     var done = assert.done || assert.async();
     var count = 0;
@@ -335,140 +193,6 @@ exports['xEach Array reverse=true'] = function(assert) {
 
     done();
 };
-
-exports['xEach Array limit=1 reverse=true'] = function(assert) {
-    var done = assert.done || assert.async();
-    var count = 0;
-    assert.expect(3);
-
-    var a = ['A','B'];
-    a.xEach({
-        reverse: true,
-        limit: 1,
-        success: function( item ) {
-            count += 1;
-            assert.equal( item, 'B' );
-        },
-        complete: function() {
-            assert.equal( count, 1 );
-            count += 1;
-        }
-    });
-    
-    assert.equal( count, 2 );
-    count += 1;
-
-    done();
-};
-
-exports['xEach Array limit=1 reverse=true Break first'] = function(assert) {
-    var done = assert.done || assert.async();
-    var count = 0;
-    assert.expect(3);
-
-    var a = ['A','B','C'];
-    a.xEach({
-        reverse: true,
-        limit: 1,
-        success: function( item ) {
-            count += 1;
-
-            if ( count===1 ) {
-                throw new Break();
-            }
-
-            assert.equal( item, 'B' );
-        },
-        complete: function() {
-            assert.equal( count, 2 );
-            count += 1;
-        }
-    });
-    
-    assert.equal( count, 3 );
-    count += 1;
-
-    done();
-};
-
-exports['xEach Array limit=1 reverse=true Break empty'] = function(assert) {
-    var done = assert.done || assert.async();
-    var count = 0;
-    assert.expect(2);
-
-    var a = ['A'];
-    a.xEach({
-        reverse: true,
-        limit: 1,
-        success: function() {
-            count += 1;
-
-            if ( count===1 ) {
-                throw new Break();
-            }
-
-            throw new Error();
-        },
-        complete: function() {
-            assert.equal( count, 2 );
-            count += 1;
-        }
-    });
-    
-    assert.equal( count, 3 );
-    count += 1;
-
-    done();
-};
-
-exports['xEach Array out of range'] = function(assert) {
-    var done = assert.done || assert.async();
-    var count = 0;
-    assert.expect(2);
-
-    var a = ['A'];
-    a.xEach({
-        start: 10,
-        limit: 10,
-        success: function() {
-            throw new Error();
-        },
-        complete: function() {
-            assert.equal( count, 0 );
-            count += 1;
-        }
-    });
-    
-    assert.equal( count, 1 );
-    count += 1;
-
-    done();
-};
-
-exports['xEach async Array out of range'] = function(assert) {
-    var done = assert.done || assert.async();
-    var count = 0;
-    assert.expect(2);
-
-    var a = ['A'];
-    a.xEach({
-        start: 10,
-        limit: 10,
-        async: true,
-        success: function() {
-            throw new Error();
-        },
-        complete: function() {
-            assert.equal( count, 1 );
-            count += 1;
-            done();
-        }
-    });
-    
-    assert.equal( count, 0 );
-    count += 1;
-};
-
 
 // ## Object
 // [use Object.xEach](http://opencrisp.wca.at/docs/external-Object.html#xEach)
@@ -577,6 +301,48 @@ exports['xEach Object limit=1'] = function(assert) {
     
     assert.equal( count, 2 );
     count += 1;
+
+    done();
+};
+
+exports['xEach Object limit=1 filter'] = function(assert) {
+    var done = assert.done || assert.async();
+    assert.expect(1);
+
+    var t = [];
+    var a = { a: 'A0', b: 'B0', c: 'B1' };
+
+    a.xEach(
+        { limit: 1 },
+        function success( item ) {
+            if ( !/^B/.test(item) ) {
+                throw new Break();
+            }
+            t.push(item);
+        },
+        function complete() {
+            assert.deepEqual( t, ['B0']);
+        }
+    );
+
+    done();
+};
+
+exports['xEach Object limit=1 filter no result'] = function(assert) {
+    var done = assert.done || assert.async();
+    assert.expect(1);
+
+    var a = { a: 'A', b: 'B', c: 'C' };
+
+    a.xEach(
+        { limit: 1 },
+        function success() {
+            throw new Break();
+        },
+        function complete() {
+            assert.ok(1);
+        }
+    );
 
     done();
 };

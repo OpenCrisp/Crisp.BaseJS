@@ -1,7 +1,7 @@
 {
     "name": "crisp-base",
     "main": "dist/crisp-base.js",
-    "version": "0.6.1",
+    "version": "0.6.3",
     "homepage": "http://opencrisp.wca.at",
     "repository": {
         "type": "git",

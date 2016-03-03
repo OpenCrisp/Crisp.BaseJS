@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.6.1 - 2016-02-22
+/*! OpenCrisp BaseJS - v0.6.3 - 2016-03-03
 * https://github.com/OpenCrisp/Crisp.BaseJS
 * Copyright (c) 2016 Fabian Schmid; Licensed MIT */
 /**
@@ -31,6 +31,43 @@
      *  toType.call('a').replace( regTypeTrim, '$1' ); // 'String'
      */
     var regTypeTrim = /^\[object ([a-z]+)\]$/i;
+
+    /**
+     * @private
+     * @type {external:Array}
+     * @memberOf util
+     */
+    var typeOfUndefined     = ['global', 'Null', 'DOMWindow', 'Window'];
+
+    var typeNameBoolean     = 'Boolean';
+    var typeNameDate        = 'Date';
+    var typeNameFunction    = 'Function';
+    var typeNameNumber      = 'Number';
+    var typeNameRegExp      = 'RegExp';
+    var typeNameString      = 'String';
+    var typeNameUndefined   = 'Undefined';
+
+
+
+    function toType( object ) {
+        var type = toTypeString.call( object ).replace( regTypeTrim, "$1" );
+
+        if ( typeOfUndefined.indexOf( type ) !== -1 ) {
+            type = typeNameUndefined;
+        }
+
+        return type;
+    }
+
+    function isType( object, type ) {
+        if ( type === 'field' ) {
+            return isType( object, typeNameString ) || isType( object, typeNameNumber ) || isType( object, typeNameBoolean ) || isType( object, typeNameDate ) || isType( object, typeNameRegExp );
+        }
+        else {
+            return toType( object ) === type;
+        }
+    }
+
 
 
     /**
@@ -77,27 +114,8 @@
 
         callback.apply( self, args );
 
-        if ( typeof opt.complete === 'function' ) {
+        if ( isType( opt.complete, typeNameFunction ) ) {
             opt.complete.apply( self, args );
-        }
-    }
-
-    function toType( object ) {
-        var type = toTypeString.call( object ).replace( regTypeTrim, "$1" );
-
-        if ( ['global', 'Null', 'DOMWindow', 'Window'].indexOf( type ) !== -1 ) {
-            type = 'Undefined';
-        }
-
-        return type;
-    }
-
-    function isType( object, type ) {
-        if ( type === 'field' ) {
-            return isType( object, 'String' ) || isType( object, 'Number' ) || isType( object, 'Boolean' ) || isType( object, 'Date' ) || isType( object, 'RegExp' );
-        }
-        else {
-            return toType( object ) === type;
         }
     }
 
@@ -163,13 +181,13 @@
             }
 
             if ( obj ) {
-                if ( !this.isType( parent[ parts[length] ], "Undefined" ) ) {
+                if ( !isType( parent[ parts[length] ], typeNameUndefined ) ) {
                     throw new Error("Can't overwrite '" + name + "' of defined!");
                 }
 
                 parent[ parts[length] ] = obj;
             }
-            else if ("undefined" === typeof parent[parts[length]]) {
+            else if ( isType( parent[parts[length]], typeNameUndefined ) ) {
                 parent[ parts[length] ] = {};
             }
 
@@ -235,23 +253,6 @@
 
             return self;
         },
-
-
-        /**
-         * @deprecated use {module:BaseJS.type}
-         * @function module:BaseJS.toType
-         * @param       {AnyItem} object
-         */
-        toType: toType,
-
-
-        /**
-         * @deprecated use {module:BaseJS.type}
-         * @function module:BaseJS.isType
-         * @param       {AnyItem}         object
-         * @param       {external:String} type
-         */
-        isType: isType,
 
 
         /**
@@ -352,27 +353,6 @@
 
 
         /**
-         * @deprecated
-         * @param       {external:String} name name of Math Function
-         * 
-         * @this        module:BaseJS
-         * @return      {external:Number}
-         *
-         * @memberOf    module:BaseJS
-         *
-         * @see external:String#toMath
-         * 
-         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#tomath|use toMath}
-         *
-         * @example
-         * Crisp.toMath.call( -1, 'abs'); // 1
-         */
-        toMath: function( name ) {
-            console.warn('Crisp.toMath is not longer supportet! Use Crisp.math');
-            return Math[ name ].call( Math, this );
-        },
-
-        /**
          * @param       {external:String} name name of Math Function
          * 
          * @this        module:BaseJS
@@ -395,102 +375,9 @@
             });
 
             return Math[ name ].apply( Math, args );
-        },
-
-
-        /**
-         * create JSON data format
-         * 
-         * @deprecated change to {@linkcode module:BaseJS.to|Crisp.to('json')}
-         * 
-         * @param       {external:Boolean} prity=false
-         * 
-         * @this        module:BaseJS
-         * @returns     {external:String} converted JavaScript Object
-         * 
-         * @memberOf    module:BaseJS
-         *
-         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#tojson|use toJson}
-         */
-        toJson: function( prity ) {
-            console.warn('Crisp.toJson is not longer supportet! Use Crisp.to');
-            return prity ? JSON.stringify( this, null, "\t" ) : JSON.stringify( this );
-        },
-
-
-        /**
-         * parse this.toString() to JavaScript Objects
-         * 
-         * @deprecated change to {@linkcode module:BaseJS.parse|Crisp.parse('json')}
-         * 
-         * @this        module:BaseJS|AnyItem
-         * @return      {AnyItem} JavaScript Objects
-         * 
-         * @memberOf    module:BaseJS
-         *
-         * @tutorial {@link http://opencrisp.wca.at/tutorials/BaseJS_test.html#parsejson|use parseJson}
-         *
-         * @example <caption>create a copy of {@link module:BaseJS} with {@link AnyItem}</caption>
-         * Crisp.parseJson(); 
-         *
-         * @example <caption>parse {@link AnyItem} to {@link external:String} and crate a new JavaScript object of {@link AnyItem}</caption>
-         * Crisp.parseJson.call('{"a":"A"}'); // { "a": "A" }
-         */
-        parseJson: function() {
-            console.warn('Crisp.parseJson is not longer supportet! Use Crisp.parse');
-            return JSON.parse( this.toString() );
         }
 
     };
-
-
-    /**
-    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
-    * 
-    * Decimal adjustment of a number.
-    *
-    * @param {String}  type  The type of adjustment.
-    * @param {Number}  value The number.
-    * @param {Integer} exp   The exponent (the 10 logarithm of the adjustment base).
-    * @returns {Number} The adjusted value.
-    */
-    function decimalAdjust(type, value, exp) {
-        // If the exp is undefined or zero...
-        if (typeof exp === 'undefined' || +exp === 0) {
-            return Math[type](value);
-        }
-        value = +value;
-        exp = +exp;
-        // If the value is not a number or the exp is not an integer...
-        if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
-            return NaN;
-        }
-        // Shift
-        value = value.toString().split('e');
-        value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
-        // Shift back
-        value = value.toString().split('e');
-        return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
-    }
-
-    // Decimal round
-    if (!Math.round10) {
-        Math.round10 = function(value, exp) {
-            return decimalAdjust('round', value, exp);
-        };
-    }
-    // Decimal floor
-    if (!Math.floor10) {
-        Math.floor10 = function(value, exp) {
-            return decimalAdjust('floor', value, exp);
-        };
-    }
-    // Decimal ceil
-    if (!Math.ceil10) {
-        Math.ceil10 = function(value, exp) {
-           return decimalAdjust('ceil', value, exp);
-        };
-    }
 
 })(typeof process !== 'undefined' && typeof process.title !== 'undefined' && typeof global !== 'undefined' ? global : window);
 
@@ -686,7 +573,7 @@
         for (; i<m; i+=1 ) {
             a = arguments[i];
 
-            if ( $$.isType( a, 'Array' ) ) {
+            if ( $$.type.call( a, 'Array' ) ) {
                 xAddArray.apply( this, a );
             }
             else if ( a !== undefined ) {
@@ -801,7 +688,7 @@
                 success.call( option.self, this[ index ], index, picker );
             } catch (e) {
                 if ( e instanceof Break ) {
-                    if ( option.reverse && option.limit ) {
+                    if ( option.limit && ( option.reverse || ( index < length && limit < length ) ) ) {
                         limit += 1;
                     }
                 }
@@ -874,6 +761,87 @@
 
 // })(Crisp);
 
+(function() {
+// (function($$) {
+
+    // var Break = $$.ns('util.control.Break');
+    // var End = $$.ns('util.control.End');
+
+    
+    /**
+    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
+    * 
+    * Decimal adjustment of a number.
+    *
+    * @param {String}  type  The type of adjustment.
+    * @param {Number}  value The number.
+    * @param {Integer} exp   The exponent (the 10 logarithm of the adjustment base).
+    * @returns {Number} The adjusted value.
+    */
+    function decimalAdjust(type, value, exp) {
+        // If the exp is undefined or zero...
+        if (typeof exp === 'undefined' || +exp === 0) {
+            return Math[type](value);
+        }
+        value = +value;
+        exp = +exp;
+        // If the value is not a number or the exp is not an integer...
+        if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+            return NaN;
+        }
+        // Shift
+        value = value.toString().split('e');
+        value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+        // Shift back
+        value = value.toString().split('e');
+        return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+    }
+
+
+    /**
+     * Decimal round
+     * @function external:Math.round10
+     *
+     * @param {external:Number} value
+     * @param {external:Number} exp
+     */
+    if (!Math.round10) {
+        Math.round10 = function(value, exp) {
+            return decimalAdjust('round', value, exp);
+        };
+    }
+
+
+    /**
+     * Decimal floor
+     * @function external:Math.floor10
+     *
+     * @param {external:Number} value
+     * @param {external:Number} exp
+     */
+    if (!Math.floor10) {
+        Math.floor10 = function(value, exp) {
+            return decimalAdjust('floor', value, exp);
+        };
+    }
+
+
+    /**
+     * Decimal ceil
+     * @function external:Math.ceil10
+     *
+     * @param {external:Number} value
+     * @param {external:Number} exp
+     */
+
+    if (!Math.ceil10) {
+        Math.ceil10 = function(value, exp) {
+           return decimalAdjust('ceil', value, exp);
+        };
+    }
+
+})(Crisp);
+
 (function($$) {
 
     // var Break = $$.ns('util.control.Break');
@@ -895,28 +863,9 @@
      * Number.isInteger(0.5); // false
      */
     Number.isInteger = Number.isInteger || function(value) {
-        return $$.isType( value, "Number" ) && isFinite(value) && Math.floor(value) === value;
+        return $$.type.call( value, "Number" ) && isFinite(value) && Math.floor(value) === value;
     };
 
-
-    /**
-     * @deprecated use .xMath()
-     * @function external:Number.prototype.toMath
-     * @implements {module:BaseJS.toMath}
-     * 
-     * @param {external:String} name name of Math Function
-     *
-     * @this external:Number
-     * @return {external:Math} return Math[name].apply(this, thisArg)
-     *
-     * @example
-     * (1).toMath('abs'); // 1
-     * (-1).toMath('abs'); // 1
-     * (-0.1).toMath('abs'); // 0.1
-     */
-    Object.defineProperty( Number.prototype, 'toMath', {
-        value: $$.toMath
-    });
 
     /**
      * @function external:Number.prototype.xMath
@@ -950,9 +899,6 @@
      * (0).xTo(); // '0'
      * (1.5).xTo(); // '1.5'
      */
-    // Object.defineProperty( Number.prototype, 'xTo', {
-    //     value: $$.to
-    // });
 
 })(Crisp);
 
@@ -1066,7 +1012,7 @@
                 success.call( option.self, this[ name ], name, picker );
             } catch (e) {
                 if ( e instanceof Break ) {
-                    if ( option.reverse && option.limit ) {
+                    if ( option.limit && ( option.reverse || ( index < length && limit < length ) ) ) {
                         limit += 1;
                     }
                 }
@@ -1132,27 +1078,25 @@
         value: function() {
             var ret = [];
 
-            this.xEach({
-                success: function(item, index) {
-                    var str = "";
+            this.xEach({}, function (item, index) {
+                var str = "";
 
-                    if ( $$.isType( item, 'Object' ) ) {
-                        str = item.xTo();
-                    }
-                    else if ( $$.isType( item, 'Array' ) ) {
-                        str = item.xTo();
-                    }
-                    else if ( $$.isType( item, 'Boolean' ) ) {
-                        str = item.xTo();
-                    }
-                    else {
-                        str = item.toString();
-                    }
-
-                    str = index.concat("=", str);
-
-                    ret.push(str);
+                if ( $$.type.call( item, 'Object' ) ) {
+                    str = item.xTo();
                 }
+                else if ( $$.type.call( item, 'Array' ) ) {
+                    str = item.xTo();
+                }
+                else if ( $$.type.call( item, 'Boolean' ) ) {
+                    str = item.xTo();
+                }
+                else {
+                    str = item.toString();
+                }
+
+                str = index.concat("=", str);
+
+                ret.push(str);
             });
 
             return ret.join("&");

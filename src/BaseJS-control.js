@@ -32,7 +32,7 @@
      * @example
      * var End = Crisp.ns('util.control.End');
      *
-     * // tigger an End throw
+     * // trigger an End throw
      * throw new End();
      *
      * // use in a try Block
@@ -49,5 +49,19 @@
      * }
      */
     $$.ns('util.control.End', function() {});
+
+
+    /**
+     * only a Noop controller without aktivities
+     * @function util.control.Noop
+     *
+     * @example
+     * var Noop = Crisp.ns('util.control.Noop');
+     *
+     * ['A','B'].xEach({}, Noop, function complete() {
+     *     // do wath you wan at the end of each
+     * });
+     */
+    $$.ns('util.control.Noop', function() {});
 
 })(Crisp);

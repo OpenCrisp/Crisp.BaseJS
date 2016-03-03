@@ -25,28 +25,9 @@
      * Number.isInteger(0.5); // false
      */
     Number.isInteger = Number.isInteger || function(value) {
-        return $$.isType( value, "Number" ) && isFinite(value) && Math.floor(value) === value;
+        return $$.type.call( value, "Number" ) && isFinite(value) && Math.floor(value) === value;
     };
 
-
-    /**
-     * @deprecated use .xMath()
-     * @function external:Number.prototype.toMath
-     * @implements {module:BaseJS.toMath}
-     * 
-     * @param {external:String} name name of Math Function
-     *
-     * @this external:Number
-     * @return {external:Math} return Math[name].apply(this, thisArg)
-     *
-     * @example
-     * (1).toMath('abs'); // 1
-     * (-1).toMath('abs'); // 1
-     * (-0.1).toMath('abs'); // 0.1
-     */
-    Object.defineProperty( Number.prototype, 'toMath', {
-        value: $$.toMath
-    });
 
     /**
      * @function external:Number.prototype.xMath
@@ -80,8 +61,5 @@
      * (0).xTo(); // '0'
      * (1.5).xTo(); // '1.5'
      */
-    // Object.defineProperty( Number.prototype, 'xTo', {
-    //     value: $$.to
-    // });
 
 })(Crisp);

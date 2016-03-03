@@ -48,7 +48,7 @@
         for (; i<m; i+=1 ) {
             a = arguments[i];
 
-            if ( $$.isType( a, 'Array' ) ) {
+            if ( $$.type.call( a, 'Array' ) ) {
                 xAddArray.apply( this, a );
             }
             else if ( a !== undefined ) {
@@ -163,7 +163,7 @@
                 success.call( option.self, this[ index ], index, picker );
             } catch (e) {
                 if ( e instanceof Break ) {
-                    if ( option.reverse && option.limit ) {
+                    if ( option.limit && ( option.reverse || ( index < length && limit < length ) ) ) {
                         limit += 1;
                     }
                 }

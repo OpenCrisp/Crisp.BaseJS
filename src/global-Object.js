@@ -114,7 +114,7 @@
                 success.call( option.self, this[ name ], name, picker );
             } catch (e) {
                 if ( e instanceof Break ) {
-                    if ( option.reverse && option.limit ) {
+                    if ( option.limit && ( option.reverse || ( index < length && limit < length ) ) ) {
                         limit += 1;
                     }
                 }
@@ -180,27 +180,25 @@
         value: function() {
             var ret = [];
 
-            this.xEach({
-                success: function(item, index) {
-                    var str = "";
+            this.xEach({}, function (item, index) {
+                var str = "";
 
-                    if ( $$.isType( item, 'Object' ) ) {
-                        str = item.xTo();
-                    }
-                    else if ( $$.isType( item, 'Array' ) ) {
-                        str = item.xTo();
-                    }
-                    else if ( $$.isType( item, 'Boolean' ) ) {
-                        str = item.xTo();
-                    }
-                    else {
-                        str = item.toString();
-                    }
-
-                    str = index.concat("=", str);
-
-                    ret.push(str);
+                if ( $$.type.call( item, 'Object' ) ) {
+                    str = item.xTo();
                 }
+                else if ( $$.type.call( item, 'Array' ) ) {
+                    str = item.xTo();
+                }
+                else if ( $$.type.call( item, 'Boolean' ) ) {
+                    str = item.xTo();
+                }
+                else {
+                    str = item.toString();
+                }
+
+                str = index.concat("=", str);
+
+                ret.push(str);
             });
 
             return ret.join("&");

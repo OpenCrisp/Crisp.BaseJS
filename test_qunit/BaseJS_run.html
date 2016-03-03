@@ -15,6 +15,7 @@
   <script src="../src/global-Array.js"></script>
   <script src="../src/global-Boolean.js"></script>
   <script src="../src/global-Date.js"></script>
+  <script src="../src/global-Math.js"></script>
   <script src="../src/global-Number.js"></script>
   <script src="../src/global-Object.js"></script>
   <script src="../src/global-RegExp.js"></script>
