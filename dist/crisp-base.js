@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.6.3 - 2016-03-03
+/*! OpenCrisp BaseJS - v0.6.4 - 2016-03-13
 * https://github.com/OpenCrisp/Crisp.BaseJS
 * Copyright (c) 2016 Fabian Schmid; Licensed MIT */
 /**
@@ -410,7 +410,7 @@
      * @example
      * var End = Crisp.ns('util.control.End');
      *
-     * // tigger an End throw
+     * // trigger an End throw
      * throw new End();
      *
      * // use in a try Block
@@ -427,6 +427,20 @@
      * }
      */
     $$.ns('util.control.End', function() {});
+
+
+    /**
+     * only a Noop controller without aktivities
+     * @function util.control.Noop
+     *
+     * @example
+     * var Noop = Crisp.ns('util.control.Noop');
+     *
+     * ['A','B'].xEach({}, Noop, function complete() {
+     *     // do wath you wan at the end of each
+     * });
+     */
+    $$.ns('util.control.Noop', function() {});
 
 })(Crisp);
 
