@@ -1,4 +1,4 @@
-/*! OpenCrisp BaseJS - v0.6.4 - 2016-03-13
+/*! OpenCrisp BaseJS - v0.7.0 - 2016-03-13
 * https://github.com/OpenCrisp/Crisp.BaseJS
 * Copyright (c) 2016 Fabian Schmid; Licensed MIT */
 /**
