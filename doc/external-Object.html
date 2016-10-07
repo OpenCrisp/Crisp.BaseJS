@@ -70,7 +70,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="global-Object.js.html">global-Object.js</a>, <a href="global-Object.js.html#line2">line 2</a>
+        <a href="global-Object.js.html">global-Object.js</a>, <a href="global-Object.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -160,7 +160,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="global-Object.js.html">global-Object.js</a>, <a href="global-Object.js.html#line14">line 14</a>
+        <a href="global-Object.js.html">global-Object.js</a>, <a href="global-Object.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -297,7 +297,7 @@ and execute <code>option.success</code> and/or <code>option.complete</code> with
             <td class="type">
             
                 
-<span class="param-type"><a href="util.html#.utilTickCallback">util.utilTickCallback</a></span>
+<span class="param-type">util.utilTickCallback</span>
 
 
             
@@ -369,7 +369,7 @@ and execute <code>option.success</code> and/or <code>option.complete</code> with
             <td class="type">
             
                 
-<span class="param-type"><a href="util.html#.utilTickCallback">util.utilTickCallback</a></span>
+<span class="param-type">util.utilTickCallback</span>
 
 
             
@@ -556,7 +556,7 @@ and execute <code>option.success</code> and/or <code>option.complete</code> with
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="global-Object.js.html">global-Object.js</a>, <a href="global-Object.js.html#line20">line 20</a>
+        <a href="global-Object.js.html">global-Object.js</a>, <a href="global-Object.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -614,7 +614,7 @@ and execute <code>option.success</code> and/or <code>option.complete</code> with
     
     <pre class="prettyprint"><code>{a:'A',b:'B'}.xEach({
   success: function( item, index ) {
-    // return; go to the next item 
+    // return; go to the next item
     // throw new Break(); stop each of items
     console.log('success:', index, item );
   },
@@ -634,7 +634,7 @@ console.log('end');
     <pre class="prettyprint"><code>{a:'A',b:'B'}.xEach({
   async: true,
   success: function( item, index ) {
-    // return; go to the next item 
+    // return; go to the next item
     // throw new Break(); stop each of items
     console.log('success:', index, item );
   },
@@ -648,6 +648,186 @@ console.log('end');
 // success: a A
 // success: b B
 // complete</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="xTo"><span class="type-signature"></span>xTo<span class="signature">(type<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="external-String.html">external:String</a>}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+    <h5>This:</h5>
+    <ul><li><a href="external-Object.html">external:Object</a></li></ul>
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="external-String.html">external:String</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "json"
+                
+                </td>
+            
+
+            <td class="description last">data format</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="module-BaseJS.html#.to">module:BaseJS.to</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="global-Object.js.html">global-Object.js</a>, <a href="global-Object.js.html#line137">line 137</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="external-String.html">external:String</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>{ a: 'A' }.xTo(); // '{"a":"A"}'</code></pre>
 
 
 
@@ -836,186 +1016,6 @@ console.log('end');
 
     
 
-    <h4 class="name" id="xTo"><span class="type-signature"></span>xTo<span class="signature">(type<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="external-String.html">external:String</a>}</span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-    <h5>This:</h5>
-    <ul><li><a href="external-Object.html">external:Object</a></li></ul>
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="external-String.html">external:String</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "json"
-                
-                </td>
-            
-
-            <td class="description last">data format</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="module-BaseJS.html#.to">module:BaseJS.to</a></li>
-        
-    </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="global-Object.js.html">global-Object.js</a>, <a href="global-Object.js.html#line140">line 140</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="external-String.html">external:String</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>{ a: 'A' }.xTo(); // '{"a":"A"}'</code></pre>
-
-
-
-        
-            
-
-    
-
     <h4 class="name" id="xType"><span class="type-signature"></span>xType<span class="signature">(type<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="external-String.html">external:String</a>|<a href="external-Boolean.html">external:Boolean</a>}</span></h4>
 
     
@@ -1134,7 +1134,7 @@ console.log('end');
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="global-Object.js.html">global-Object.js</a>, <a href="global-Object.js.html#line157">line 157</a>
+        <a href="global-Object.js.html">global-Object.js</a>, <a href="global-Object.js.html#line154">line 154</a>
     </li></ul></dd>
     
 
@@ -1209,7 +1209,7 @@ console.log('end');
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Mar 13 2016 17:54:47 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Fri Oct 07 2016 20:56:05 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

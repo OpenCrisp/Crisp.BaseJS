@@ -1,4 +1,3 @@
-
 /**
  * @external Object
  * @see  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
@@ -8,21 +7,21 @@
 
     var Break = $$.ns('util.control.Break');
     var End = $$.ns('util.control.End');
-    var utilTack = $$.utilTack;
+    // var utilTack = $$.utilTack;
 
 
     /**
      * @function external:Object.prototype.toString
      * @see  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString
      */
-    
-    
+
+
     /**
      * call of each Object key-items with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
      * and execute <code>option.success</code> and/or <code>option.complete</code> with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
-     * 
+     *
      * @function external:Object.prototype.xEach
-     * 
+     *
      * @param {external:Object}         option
      * @param {util.utilTickCallback}   option.success     callback function for execute each item with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
      * @param {AnyItem}                 [option.self]      use Object for .call() the <code>option.success</code> an <code>option.complete</code> function
@@ -30,7 +29,7 @@
      * @param {external:Boolean}        [option.async]     enable asynchronus for call of each Object key-items with {@linkcode module:BaseJS.utilTick|(async) Crisp.utilTick}
      * @param {external:Number}         [option.start=0]        start index of each
      * @param {external:Number}         [option.limit=length]   limit items of each
-     * 
+     *
      * @this external:Object
      * @return {external:Object}
      *
@@ -41,7 +40,7 @@
      * @example
      * {a:'A',b:'B'}.xEach({
      *   success: function( item, index ) {
-     *     // return; go to the next item 
+     *     // return; go to the next item
      *     // throw new Break(); stop each of items
      *     console.log('success:', index, item );
      *   },
@@ -60,7 +59,7 @@
      * {a:'A',b:'B'}.xEach({
      *   async: true,
      *   success: function( item, index ) {
-     *     // return; go to the next item 
+     *     // return; go to the next item
      *     // throw new Break(); stop each of items
      *     console.log('success:', index, item );
      *   },
@@ -75,72 +74,70 @@
      * // success: b B
      * // complete
      */
-    function xEachObject( option, success, picker ) {
+    function xEachObject(option, success, picker) {
         var index,
-            keys = Object.keys( this ),
+            keys = Object.keys(this),
             i = 0,
             reverse = 1,
             length = keys.length,
-            start = option.start ? Number( option.start ) : 0,
-            limit = option.limit === undefined ? length : Number( option.limit ),
+            start = option.start ? Number(option.start) : 0,
+            limit = option.limit === undefined ? length : Number(option.limit),
             name;
-        
-        if ( limit <= 0 ) {
+
+        if (limit <= 0) {
             limit = length;
         }
 
-        if ( start < 0 ) {
+        if (start < 0) {
             start = length + start;
         }
 
-        if ( start + limit > length ) {
+        if (start + limit > length) {
             limit -= start + limit - length;
         }
 
-        if ( start < 0 ) {
+        if (start < 0) {
             start = 0;
             limit = length;
         }
 
-        if ( option.reverse ) {
+        if (option.reverse) {
             reverse = -1;
             start -= length + reverse;
         }
 
-        for (; i<limit; i+=1 ) {
+        for (; i < limit; i += 1) {
             try {
-                index = ( i + start ) * reverse;
-                name = keys[ index ];
-                success.call( option.self, this[ name ], name, picker );
+                index = (i + start) * reverse;
+                name = keys[index];
+                success.call(option.self, this[name], name, picker);
             } catch (e) {
-                if ( e instanceof Break ) {
-                    if ( option.limit && ( option.reverse || ( index < length && limit < length ) ) ) {
+                if (e instanceof Break) {
+                    if (option.limit && (option.reverse || (index < length && limit < length))) {
                         limit += 1;
                     }
-                }
-                else if ( e instanceof End || index < 0 ) {
+                } else if (e instanceof End || index < 0) {
                     return this;
-                }
-                else {
+                } else {
                     throw e;
                 }
             }
         }
-        
+
         return this;
     }
 
     $$.xEachObject = xEachObject;
 
-    Object.defineProperty( Object.prototype, 'xEach', {
-        value: utilTack( xEachObject )
+    Object.defineProperty(Object.prototype, 'xEach', {
+        value: $$.utilTack(xEachObject)
     });
 
 
     /**
      * @function external:Object.prototype.xTo
      * @implements {module:BaseJS.to}
-     * 
+     *
      * @param {external:String} [type="json"] data format
      *
      * @this external:Object
@@ -149,7 +146,7 @@
      * @example
      * { a: 'A' }.xTo(); // '{"a":"A"}'
      */
-    Object.defineProperty( Object.prototype, 'xTo', {
+    Object.defineProperty(Object.prototype, 'xTo', {
         value: $$.to
     });
 
@@ -157,7 +154,7 @@
     /**
      * @function external:Object.prototype.xType
      * @implements {module:BaseJS.type}
-     * 
+     *
      * @param {external:String} [type] JavaScript type
      *
      * @this external:Object
@@ -167,7 +164,7 @@
      * (false).xType();          // 'Object'
      * (true).xType('Object');  // 'true'
      */
-    Object.defineProperty( Object.prototype, 'xType', {
+    Object.defineProperty(Object.prototype, 'xType', {
         value: $$.type
     });
 
@@ -176,23 +173,20 @@
      * Object to HTTP URL Parameter
      * @return {external:String}
      */
-    Object.defineProperty( Object.prototype, 'toURLParam', {
+    Object.defineProperty(Object.prototype, 'toURLParam', {
         value: function() {
             var ret = [];
 
-            this.xEach({}, function (item, index) {
+            this.xEach({}, function(item, index) {
                 var str = "";
 
-                if ( $$.type.call( item, 'Object' ) ) {
+                if ($$.type.call(item, 'Object')) {
                     str = item.xTo();
-                }
-                else if ( $$.type.call( item, 'Array' ) ) {
+                } else if ($$.type.call(item, 'Array')) {
                     str = item.xTo();
-                }
-                else if ( $$.type.call( item, 'Boolean' ) ) {
+                } else if ($$.type.call(item, 'Boolean')) {
                     str = item.xTo();
-                }
-                else {
+                } else {
                     str = item.toString();
                 }
 
