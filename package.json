@@ -2,7 +2,7 @@
     "name": "crisp-base",
     "title": "OpenCrisp BaseJS",
     "description": "Base OpenCrisp JavaScript functions for Web-Clients and Server-Nodes",
-    "version": "0.7.1",
+    "version": "0.7.2",
     "main": "./dist/crisp-base.js",
     "homepage": "https://github.com/OpenCrisp/Crisp.BaseJS",
     "author": {
@@ -40,7 +40,7 @@
         "grunt-contrib-qunit": "~1.2.0",
         "grunt-contrib-uglify": "~2.0.0",
         "grunt-contrib-watch": "~1.0.0",
-        "grunt-createunit": "~1.0.3",
+        "grunt-createunit": "~1.0.4",
         "grunt-jsdoc": "~2.1.0"
     },
     "keywords": [
