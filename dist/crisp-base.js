@@ -1,6 +1,6 @@
-/*! OpenCrisp BaseJS - v0.7.2 - 2016-10-07
+/*! OpenCrisp BaseJS - v0.7.3 - 2017-07-01
 * https://github.com/OpenCrisp/Crisp.BaseJS
-* Copyright (c) 2016 Fabian Schmid; Licensed [object Object] */
+* Copyright (c) 2017 Fabian Schmid; Licensed [object Object] */
 /**
  * Basic Crisp functions
  * @namespace       util
